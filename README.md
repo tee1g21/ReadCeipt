@@ -1,4 +1,4 @@
-# Readceipt
+# ReadCeipt
 
 OCR-powered mobile app to capture, parse, and organise receipt data. Built with **Expo (React Native + TypeScript)**. Phase 1 is fully on-device (camera/import → parse → save locally); Phase 2 adds a tiny backend to call cloud OCR/LLM safely (no keys in the app).
 
