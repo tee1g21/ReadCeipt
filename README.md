@@ -1,4 +1,4 @@
-# Readceipt
+# ReadCeipt
 
 OCR-powered mobile app to capture, parse, and organise receipt data. Built with **Expo (React Native + TypeScript)**. Phase 1 is fully on-device (camera/import → parse → save locally); Phase 2 adds a tiny backend to call cloud OCR/LLM safely (no keys in the app).
 
@@ -16,6 +16,6 @@ OCR-powered mobile app to capture, parse, and organise receipt data. Built with 
 - **Mobile:** Expo (React Native), TypeScript
 - **UI:** NativeWind (Tailwind for RN) + optional React Native Paper
 - **Storage:** expo-file-system + expo-sqlite
-- **OCR:** On-device ML Kit (Phase 1), Azure Document Intelligence (Phase 2)
+- **OCR:** Azure Document Intelligence 
 - **LLM (optional):** server-side extraction/validation to strict JSON
 - **Server (later):** Cloudflare Worker or Vercel Functions (stores API keys)
