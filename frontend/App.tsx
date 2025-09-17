@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { View, Text, TextInput, Pressable, FlatList } from "react-native";
+import { View, Text, TextInput, Pressable, FlatList, Platform } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import "./global.css";
 
 export default function App() {
   const [items, setItems] = useState<string[]>([]);
@@ -11,7 +13,11 @@ export default function App() {
     setText("");
   };
 
+  // Use View for web, SafeAreaView for mobile
+  const Container = Platform.OS === 'web' ? View : SafeAreaView;
+
   return (
+    <Container className="flex-1">
     <View className="flex-1 bg-gray-100 p-6">
       <Text className="text-2xl font-bold text-blue-600 mb-4">
         ReadCeipt Test App
@@ -46,6 +52,7 @@ export default function App() {
         )}
       />
     </View>
+    </Container>
   );
 }
 
