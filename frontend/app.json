@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "ReadCeipt",
+    "slug": "readceipt",
+    "scheme": "readceipt",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,9 +14,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "bundleIdentifier": "com.tee1g21.readceipt",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.tee1g21.readceipt",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -26,11 +29,23 @@
     "web": {
       "favicon": "./assets/favicon.png",
       "bundler": "metro"
-
     },
     "plugins": [
       "expo-router",
-      "expo-sqlite"
+      "expo-sqlite",
+      "expo-font", 
+      [
+      "expo-splash-screen",
+        {
+          "backgroundColor": "#232323",
+          "image": "./assets/splash-icon.png",
+          "dark": {
+            "image": "./assets/splash-icon-dark.png",
+            "backgroundColor": "#87CEEB"
+          },
+          "imageWidth": 200
+        }
+      ]
     ]
   }
 }
