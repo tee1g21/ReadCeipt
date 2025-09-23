@@ -16,6 +16,6 @@ OCR-powered mobile app to capture, parse, and organise receipt data. Built with 
 - **Mobile:** Expo (React Native), TypeScript
 - **UI:** NativeWind (Tailwind for RN) + React Native Paper
 - **Storage:** expo-file-system + expo-sqlite
-- **OCR:** Azure Document Intelligence 
+- **OCR:** Azure AI Vision
 - **LLM (optional):** server-side extraction/validation to strict JSON
 - **Server (later):** Cloudflare Worker or Vercel Functions (stores API keys)
