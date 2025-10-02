@@ -1,1 +1,4 @@
 .vscode
+keys
+**/receipt_images
+**/__pycache__

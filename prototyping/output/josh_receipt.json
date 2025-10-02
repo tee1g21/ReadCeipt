@@ -1,0 +1,33 @@
+{
+  "store_name": "Sainsbury's",
+  "store_address": "33 Charterhouse Street London EC1M 6HA",
+  "date": "2025-08-22",
+  "time": "15:21:14",
+  "receipt_id": "6290514061058100220825",
+  "items": [
+    {
+      "item_name": "FLASH KITCHEN SPRAY",
+      "quantity": 1,
+      "unit_price": 2.50,
+      "total_price": 2.50
+    },
+    {
+      "item_name": "BY JS MALTED MILK",
+      "quantity": 1,
+      "unit_price": 0.49,
+      "total_price": 0.49
+    },
+    {
+      "item_name": "JS MEDIUM NOODLES",
+      "quantity": 1,
+      "unit_price": 0.95,
+      "total_price": 0.95
+    }
+  ],
+  "subtotal": null,
+  "tax": null,
+  "discounts": 1.15,
+  "total": 4.69,
+  "payment_method": "Visa Debit",
+  "currency": "GBP"
+}
