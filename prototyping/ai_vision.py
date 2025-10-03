@@ -76,7 +76,8 @@ def interpret_text(parsed_text : str) -> dict:
         Double check that the addresses are geographically possible and that item unit price and quantities sum to the total. 
         If subtotal is not clearly stated leave it as null. 
         Look out for cancelled items, that should not be included in final items list.
-        In the explanation section explain any attributes you were unsure on
+        Refer to currencies as their official ISO 4217 Code
+        In the explanation section explain any attributes you were unsure on. 
     """,
 
         config=types.GenerateContentConfig(

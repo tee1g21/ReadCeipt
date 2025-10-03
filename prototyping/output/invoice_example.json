@@ -1,0 +1,35 @@
+{
+    "store_name": "East Repair Inc.",
+    "store_address": "1912 Harvest Lane\nNew York, NY 12210",
+    "date": "2019-11-02",
+    "time": null,
+    "receipt_id": "US-001",
+    "items": [
+        {
+            "item_name": "Front and rear brake cables",
+            "quantity": 1,
+            "unit_price": 100.0,
+            "total_price": 100.0
+        },
+        {
+            "item_name": "New set of pedal arms",
+            "quantity": 2,
+            "unit_price": 15.0,
+            "total_price": 30.0
+        },
+        {
+            "item_name": "Labor 3hrs",
+            "quantity": 3,
+            "unit_price": 5.0,
+            "total_price": 15.0
+        }
+    ],
+    "subtotal": 145.0,
+    "tax": 9.06,
+    "discounts": null,
+    "total": 154.06,
+    "payment_method": null,
+    "currency": "USD",
+    "explanation": "The time attribute is null as it was not present on the receipt. The payment method is null as it was not specified. The 'receipt date' was used for the 'date' attribute. The 'total' explicitly has a dollar sign '$' which indicates USD as the currency.",
+    "parsed_text": "receipt\nLOGO\nFROM\nRECEIPT #\nUS-001\nEast Repair Inc.\nRECEIPT DATE\n11/02/2019\n1912 Harvest Lane\nNew York, NY 12210\nP.O.#\n2312/2019\nDUE DATE\n26/02/2019\nBILL TO\nSHIP TO\nJohn Smith\nJohn Smith\n2 Court Square\n3787 Pineview Drive\nNew York, NY 12210\nCambridge, MA 12210\nQTY\nDESCRIPTION\nUNIT PRICE\nAMOUNT\n1\nFront and rear brake cables\n100.00\n100.00\n2\nNew set of pedal arms\n15.00\n30.00\n3\nLabor 3hrs\n5.00\n15.00\nSubtotal\n145.00\nSales Tax 6.25%\n9.06\nTOTAL\n$154.06\nJohn Smith\nTERMS & CONDITIONS\nPayment is due within 15 days\nPlease make checks payable to: East Repair Inc.\n"
+}
