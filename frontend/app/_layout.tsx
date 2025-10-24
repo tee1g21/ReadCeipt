@@ -8,15 +8,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 
-
-  useEffect(() => {
-      SplashScreen.hide();
-    
-  }, []);
-
  return (
-    <Stack screenOptions={{headerShown:true}}>
-      <Stack.Screen name="index" options={{headerShown:false}}/>
-    </Stack>
+    <Stack />
   );
 }
