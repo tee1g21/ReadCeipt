@@ -11,6 +11,9 @@ export default function TabLayout() {
         headerShown: false,
         tabBarActiveTintColor: isDark ? "#2DD4BF" : "#006778",
         tabBarInactiveTintColor: isDark ? "#8b9a96" : "#707070",
+        tabBarLabelStyle: {
+          fontFamily: "InclusiveSans_600Semibold",
+        },
         tabBarStyle: {
           backgroundColor: isDark ? "#131a2a" : "#f8f9fa",
           borderTopColor: isDark ? "#1f2839" : "#e6e7e8",
