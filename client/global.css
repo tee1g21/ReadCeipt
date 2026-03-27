@@ -5,13 +5,13 @@
 @layer base {
   /* light */
   :root {
-    --background: 236 237 238; /* #ecedee */
+    --background: 248 249 250; /* ##f8f9fa */
 
     /* foreground */
     --headline: 31 34 35; /* #1f2223 */
     --body: 65 74 76; /* #414a4c */
     --muted: 112 112 112; /* #707070 */
-    --primary-foreground : 248 249 250; /* #f8f9fa */
+    --primary-foreground : 255 255 255; /* ##ffffff */
 
     --primary: 0 103 120; /* #006778 */
     --secondary: 230 231 232; /* #e6e7e8 */
