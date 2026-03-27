@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+
+    /* light */
+    :root {
+        --background: #ecedee;
+        --headline: #1f2223;
+        --body: #414a4c;
+        --primary: #006778;
+        --secondary: #e6e7e8;
+        --tertiary: #2E7D32;
+        --destructive: #b92020;
+    }
+
+    @media(prefers-color-scheme: dark) {
+        :root { 
+            --background: #131a2a;
+            --headline: #d9e1fd;
+            --body: #b9c9c4;
+            --primary: #2DD4BF;
+            --secondary: #1f2839;
+            --tertiary: #ffab5a;
+            --destructive: #ffb3aa;
+        }
+    }
+}
