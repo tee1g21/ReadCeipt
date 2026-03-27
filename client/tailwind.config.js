@@ -5,7 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['InclusiveSans', 'sans-serif'],
+        sans: ['InclusiveSans_400Regular', 'sans-serif'],
+        'sans-medium': ['InclusiveSans_500Medium', 'sans-serif'],
+        'sans-semibold': ['InclusiveSans_600SemiBold', 'sans-serif'],
+        'sans-bold': ['InclusiveSans_700Bold', 'sans-serif'],
       },
       colors: {
         background: 'rgb(var(--background) / <alpha-value>)',

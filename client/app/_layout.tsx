@@ -3,6 +3,9 @@ import "../global.css";
 import {
   useFonts,
   InclusiveSans_400Regular,
+  InclusiveSans_500Medium,
+  InclusiveSans_600SemiBold,
+  InclusiveSans_700Bold,
 } from "@expo-google-fonts/inclusive-sans";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -12,7 +15,10 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
-    InclusiveSans: InclusiveSans_400Regular,
+    InclusiveSans_400Regular,
+    InclusiveSans_500Medium,
+    InclusiveSans_600SemiBold,
+    InclusiveSans_700Bold,
   });
 
   useEffect(() => {
