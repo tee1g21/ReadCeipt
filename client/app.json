@@ -40,7 +40,13 @@
           }
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow ReadCeipt to access your camera to scan your receipts."
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

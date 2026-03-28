@@ -12,7 +12,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: isDark ? "#2DD4BF" : "#006778",
         tabBarInactiveTintColor: isDark ? "#8b9a96" : "#707070",
         tabBarLabelStyle: {
-          fontFamily: "InclusiveSans_600Semibold",
+          fontFamily: "InclusiveSans_600SemiBold",
         },
         tabBarStyle: {
           backgroundColor: isDark ? "#131a2a" : "#f8f9fa",
@@ -45,6 +45,10 @@ export default function TabLayout() {
               color={color}
             />
           ),
+          tabBarStyle: {
+            backgroundColor: "black",
+            borderTopWidth: 0,
+          },
         }}
       />
 

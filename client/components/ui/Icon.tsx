@@ -1,9 +1,9 @@
-import Feather from '@expo/vector-icons/Feather';
-import { cssInterop } from 'nativewind';
+import Feather from "@expo/vector-icons/Feather";
+import { cssInterop } from "nativewind";
 
 cssInterop(Feather, {
   className: {
-    target: 'style',
+    target: "style",
     nativeStyleToProp: { color: true },
   },
 });
@@ -15,20 +15,14 @@ const ICON_SIZES = {
   xl: 32,
 };
 
-
-type IconName = React.ComponentProps<typeof Feather>['name'];
+type IconName = React.ComponentProps<typeof Feather>["name"];
 
 interface IconProps {
   name: IconName;
   size?: keyof typeof ICON_SIZES;
-  className?: string; }
+  className?: string;
+}
 
-export function Icon({ name, size = 'default', className }: IconProps) {
-  return (
-    <Feather 
-      name={name} 
-      size={ICON_SIZES[size]} 
-      className={className} 
-    />
-  );
+export function Icon({ name, size = "default", className }: IconProps) {
+  return <Feather name={name} size={ICON_SIZES[size]} className={className} />;
 }
