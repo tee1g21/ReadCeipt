@@ -8,7 +8,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
   },
   "dependencies": {
     "@expo-google-fonts/inclusive-sans": "^0.4.1",
