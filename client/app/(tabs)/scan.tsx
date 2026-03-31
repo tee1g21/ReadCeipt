@@ -1,14 +1,22 @@
 import { useCameraPermissions } from "expo-camera";
 import { Screen, Button, AppText } from "@/components/ui";
 import ScanInterface from "@/components/scan/ScanInterface";
+import { useState } from "react";
+import { ReviewReceipt } from "@/components/scan/ReviewReceipt";
 
 export default function Scan() {
   const [permission, requestPermission] = useCameraPermissions();
+  const [capturedImage, setCapturedImage] = useState<{
+    uri: string;
+    base64?: string;
+  } | null>(null);
 
   if (!permission) {
     return (
-      <Screen className="items-center justify-center">
-        <AppText variant="h2">Loading camera...</AppText>
+      <Screen className="items-center justify-center bg-black-900">
+        <AppText variant="h2" className="text-secondary">
+          Loading camera...
+        </AppText>
       </Screen>
     );
   }
@@ -32,5 +40,14 @@ export default function Scan() {
     );
   }
 
-  return <ScanInterface />;
+  if (capturedImage) {
+    return (
+      <ReviewReceipt
+        capturedImage={capturedImage}
+        setCapturedImage={setCapturedImage}
+      />
+    );
+  }
+
+  return <ScanInterface setCapturedImage={setCapturedImage} />;
 }

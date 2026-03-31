@@ -15,7 +15,7 @@ const ICON_SIZES = {
   xl: 32,
 };
 
-type IconName = React.ComponentProps<typeof Feather>["name"];
+export type IconName = React.ComponentProps<typeof Feather>["name"];
 
 interface IconProps {
   name: IconName;
