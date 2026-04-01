@@ -1,8 +1,11 @@
 export { AppText } from "./AppText";
 export { Button } from "./Button";
 export { CameraButton } from "./CameraButton";
+export { Header } from "./Header";
 export { Icon } from "./Icon";
 export type { IconName } from "./Icon";
 export { SafeContainer } from "./SafeContainer";
+export type { SafeContainerProps } from "./SafeContainer";
 export { NavBottomGradient } from "./NavBottomGradient";
 export { Screen } from "./Screen";
+export { Surface } from "./Surface";

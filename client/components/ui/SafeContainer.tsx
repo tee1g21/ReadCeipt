@@ -1,8 +1,26 @@
-import { Platform, View, ViewProps } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Platform, View, type ViewProps } from "react-native";
+import {
+  SafeAreaView,
+  type Edge,
+  type SafeAreaViewProps,
+} from "react-native-safe-area-context";
 
-export function SafeContainer({ className, ...props }: ViewProps) {
-  const Container = Platform.OS === "web" ? View : SafeAreaView;
+export interface SafeContainerProps extends ViewProps {
+  edges?: Edge[];
+  mode?: SafeAreaViewProps["mode"];
+}
 
-  return <Container className={className} {...props} />;
+export function SafeContainer({
+  className,
+  edges,
+  mode,
+  ...props
+}: SafeContainerProps) {
+  if (Platform.OS === "web") {
+    return <View className={className} {...props} />;
+  }
+
+  return (
+    <SafeAreaView className={className} edges={edges} mode={mode} {...props} />
+  );
 }
