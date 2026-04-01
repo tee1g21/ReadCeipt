@@ -19,7 +19,7 @@ const buttonVariants = cva(
         default: "h-12 px-6",
         sm: "h-9 px-4 rounded-lg",
         lg: "h-14 px-8 rounded-2xl",
-        icon: "h-12 w-12",
+        icon: "h-12 w-12 rounded-2xl",
       },
     },
     defaultVariants: {
@@ -33,7 +33,7 @@ const buttonTextVariants = cva("font-sans-bold", {
   variants: {
     variant: {
       primary: "text-primary-foreground",
-      secondary: "text-body",
+      secondary: "text-primary",
       outline: "text-primary",
       ghost: "text-primary",
     },
