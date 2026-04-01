@@ -6,12 +6,13 @@
   /* light */
   :root {
     --background: 248 249 250; /* ##f8f9fa */
+    --surface: 255 255 255; /* #ffffff */
 
     /* foreground */
     --headline: 31 34 35; /* #1f2223 */
     --body: 65 74 76; /* #414a4c */
     --muted: 112 112 112; /* #707070 */
-    --primary-foreground : 255 255 255; /* ##ffffff */
+    --primary-foreground: 255 255 255; /* ##ffffff */
 
     --primary: 0 103 120; /* #006778 */
     --secondary: 230 231 232; /* #e6e7e8 */
@@ -23,12 +24,13 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --background: 19 26 42; /* #131a2a */
+      --surface: 31 40 57; /* #1f2839 */
 
       /* foreground */
       --headline: 217 225 253; /* #d9e1fd */
       --body: 185 201 196; /* #b9c9c4 */
       --muted: 139 154 150; /* #8b9a96 */
-      --primary-foreground : 19 27 46; /* ##131B2E */
+      --primary-foreground: 19 27 46; /* ##131B2E */
 
       --primary: 45 212 191; /* #2DD4BF */
       --secondary: 31 40 57; /* #1f2839 */

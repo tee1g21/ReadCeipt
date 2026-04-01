@@ -12,6 +12,7 @@ module.exports = {
       },
       colors: {
         background: "rgb(var(--background) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
         headline: "rgb(var(--headline) / <alpha-value>)",
         body: "rgb(var(--body) / <alpha-value>)",
         muted: "rgb(var(--muted) / <alpha-value>)",
