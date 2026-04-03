@@ -1,4 +1,5 @@
 import { Surface, Icon } from "@/components/ui";
+import { cn } from "@/lib";
 import { TextInput, useColorScheme } from "react-native";
 
 export function SearchBar() {
@@ -8,9 +9,9 @@ export function SearchBar() {
   return (
     <Surface
       variant="secondary"
-      className="flex-none flex-row items-center px-6 py-0"
+      className="flex-none flex-row items-center px-6 py-0 border-2 border-muted/30 dark:border-surface"
     >
-      <Icon name="search" size="sm" className="text-body" />
+      <Icon name="search" size="default" className="text-body" />
       <TextInput
         placeholder="Search"
         className="w-full p-4 text-body text-lg web:outline-none"
