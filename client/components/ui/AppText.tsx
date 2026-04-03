@@ -7,9 +7,9 @@ const textVariants = cva(
   {
     variants: {
       variant: {
-        h1: "text-4xl font-sans-bold tracking- text-headline",
+        h1: "text-4xl font-sans-bold tracking-tight text-headline",
         h2: "text-2xl font-sans-bold tracking-tight text-headline",
-        h3: "text-xl font-sans-semibold text-headline",
+        h3: "text-xl font-sans-semibold text-body",
         body: "text-base leading-relaxed text-body",
         muted: "text-sm text-muted",
       },

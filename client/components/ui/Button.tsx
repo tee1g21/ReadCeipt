@@ -6,20 +6,20 @@ import { AppText } from "./AppText";
 
 // The Button Container
 const buttonVariants = cva(
-  "flex-row items-center justify-center rounded-xl active:scale-95 active:opacity-80 transition-all",
+  "flex-row items-center justify-center rounded-2xl active:scale-95 active:opacity-80 transition-all",
   {
     variants: {
       variant: {
         primary: "bg-primary",
         secondary: "bg-secondary",
         outline: "border-2 border-primary bg-transparent",
-        ghost: "bg-transparent active:bg-primary/10",
+        ghost: "bg-transparent",
       },
       size: {
         default: "h-12 px-6",
-        sm: "h-9 px-4 rounded-lg",
-        lg: "h-14 px-8 rounded-2xl",
-        icon: "h-12 w-12 rounded-2xl",
+        sm: "h-9 px-4 ",
+        lg: "h-14 px-8",
+        icon: "h-12 w-12",
       },
     },
     defaultVariants: {
@@ -33,7 +33,7 @@ const buttonTextVariants = cva("font-sans-bold", {
   variants: {
     variant: {
       primary: "text-primary-foreground",
-      secondary: "text-primary",
+      secondary: "text-body",
       outline: "text-primary",
       ghost: "text-primary",
     },
