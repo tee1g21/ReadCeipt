@@ -15,8 +15,9 @@ export default function TabLayout() {
           fontFamily: "InclusiveSans_600SemiBold",
         },
         tabBarStyle: {
-          backgroundColor: isDark ? "#131a2a" : "#f8f9fa",
+          backgroundColor: isDark ? "#131a2a" : "#F5F6F7",
           borderTopColor: isDark ? "#1f2839" : "#e6e7e8",
+          height: 72,
         },
       }}
     >
@@ -48,6 +49,7 @@ export default function TabLayout() {
           tabBarStyle: {
             backgroundColor: "black",
             borderTopWidth: 0,
+            height: 72,
           },
         }}
       />
