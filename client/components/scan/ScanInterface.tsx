@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { CameraView } from "expo-camera";
 import { CameraControls } from "./controls/CameraControls";
 import { SafeContainer, NavBottomGradient } from "@/components/ui";
+import { useIsFocused } from "@react-navigation/native";
 
 interface ScanInterfaceProps {
   setCapturedImage: React.Dispatch<
@@ -16,15 +17,18 @@ export default function ScanInterface({
 }: ScanInterfaceProps) {
   const cameraRef = useRef<CameraView>(null);
   const [isTorchOn, setIsTorchOn] = useState(false);
+  const isFocused = useIsFocused();
 
   return (
     <View className="flex-1 bg-black">
-      <CameraView
-        ref={cameraRef}
-        style={StyleSheet.absoluteFillObject}
-        facing="back"
-        enableTorch={isTorchOn}
-      />
+      {isFocused && (
+        <CameraView
+          ref={cameraRef}
+          style={StyleSheet.absoluteFillObject}
+          facing="back"
+          enableTorch={isTorchOn}
+        />
+      )}
 
       <SafeContainer className="flex-1 justify-end px-8 pt-4 pb-10">
         <NavBottomGradient />
