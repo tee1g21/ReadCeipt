@@ -5,8 +5,8 @@
 @layer base {
   /* light */
   :root {
-    --background: 248 249 250; /* ##f8f9fa */
-    --surface: 255 255 255; /* #ffffff */
+    --background: 245 246 247; /* #F5F6F7 */
+    --surface: 252 252 251; /* #FCFCFB */
 
     /* foreground */
     --headline: 31 34 35; /* #1f2223 */
@@ -15,8 +15,8 @@
     --primary-foreground: 255 255 255; /* ##ffffff */
 
     --primary: 0 103 120; /* #006778 */
-    --secondary: 230 231 232; /* #e6e7e8 */
-    --tertiary: 46 125 50; /* #2E7D32 */
+    --secondary: 240 241 242; /* #F0F1F2 */
+    --tertiary: 163 246 156; /* #A3F69C */
 
     --destructive: 185 32 32; /* #b92020 */
   }
@@ -24,7 +24,7 @@
   @media (prefers-color-scheme: dark) {
     :root {
       --background: 19 26 42; /* #131a2a */
-      --surface: 31 40 57; /* #1f2839 */
+      --surface: 43 61 88; /* #2B3D58 */
 
       /* foreground */
       --headline: 217 225 253; /* #d9e1fd */
