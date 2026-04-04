@@ -8,10 +8,13 @@ import {
   Container,
   ReceiptPreview,
 } from "@/components/ui";
-import { FlatList, ScrollView, View } from "react-native";
+import { useRouter } from "expo-router";
+import { ScrollView, View } from "react-native";
 import { cn } from "@/lib/cn";
 
 export default function Dashboard() {
+  const router = useRouter();
+
   const monthlySpend = {
     Oct: 120,
     Nov: 300,
@@ -109,11 +112,12 @@ export default function Dashboard() {
                 variant="ghost"
                 className="text-primary p-0"
                 label="View More"
+                onPress={() => router.push("/(tabs)/history")}
               />
             </View>
 
             <View className="gap-4">
-              <ReceiptPreview />
+              <ReceiptPreview  />
               <ReceiptPreview />
               <ReceiptPreview />
             </View>
