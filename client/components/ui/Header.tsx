@@ -2,6 +2,7 @@ import { View } from "react-native";
 import { useRouter } from "expo-router";
 import { Button } from "./Button";
 import { Icon, type IconName } from "./Icon";
+import { AppText } from "./AppText";
 import { cn } from "@/lib/cn";
 
 interface HeaderAction {
@@ -11,6 +12,7 @@ interface HeaderAction {
 
 interface HeaderProps {
   className?: string;
+  title?: string;
   back?: boolean;
   leftAction?: HeaderAction | null;
   rightAction?: HeaderAction | null;
@@ -18,6 +20,7 @@ interface HeaderProps {
 
 export function Header({
   className,
+  title,
   back = false,
   leftAction,
   rightAction,
@@ -62,8 +65,11 @@ export function Header({
   };
 
   return (
-    <View className={cn(className, "flex-row justify-between p-4 w-full")}>
+    <View
+      className={cn(className, "relative flex-row justify-between items-center p-4 w-full")}
+    >
       {renderAction(resolvedLeftAction)}
+      {title ? <AppText variant="h3" className="mt-2">{title}</AppText> : null}
       {renderAction(resolvedRightAction)}
     </View>
   );
