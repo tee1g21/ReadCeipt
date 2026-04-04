@@ -16,7 +16,7 @@
 
     --primary: 0 103 120; /* #006778 */
     --secondary: 240 241 242; /* #F0F1F2 */
-    --tertiary: 163 246 156; /* #A3F69C */
+    --success: 22 101 52; /* #166534 */
 
     --destructive: 185 32 32; /* #b92020 */
   }
@@ -34,7 +34,7 @@
 
       --primary: 45 212 191; /* #2DD4BF */
       --secondary: 31 40 57; /* #1f2839 */
-      --tertiary: 255 171 90; /* #ffab5a */
+      --success: 163 246 156; /* #A3F69C */
 
       --destructive: 255 179 170; /* #ffb3aa */
     }

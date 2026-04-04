@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
@@ -20,6 +21,7 @@ module.exports = {
           DEFAULT: "rgb(var(--primary) / <alpha-value>)",
           foreground: "rgb(var(--primary-foreground) / <alpha-value>)",
         },
+        success: "rgb(var(--success) / <alpha-value>)",
         secondary: "rgb(var(--secondary) / <alpha-value>)",
         tertiary: "rgb(var(--tertiary) / <alpha-value>)",
         destructive: "rgb(var(--destructive) / <alpha-value>)",

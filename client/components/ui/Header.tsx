@@ -1,5 +1,6 @@
 import { View } from "react-native";
 import { useRouter } from "expo-router";
+import { useColorScheme } from "nativewind";
 import { Button } from "./Button";
 import { Icon, type IconName } from "./Icon";
 import { AppText } from "./AppText";
@@ -26,15 +27,16 @@ export function Header({
   rightAction,
 }: HeaderProps) {
   const router = useRouter();
+  const { colorScheme, toggleColorScheme } = useColorScheme();
 
   const mainLeftAction: HeaderAction = {
-    icon: "user",
+    icon: "menu",
     onPress: () => {},
   };
 
   const mainRightAction: HeaderAction = {
-    icon: "menu",
-    onPress: () => {},
+    icon: colorScheme === "dark" ? "moon" : "sun",
+    onPress: toggleColorScheme,
   };
 
   const backAction: HeaderAction = {
@@ -66,10 +68,17 @@ export function Header({
 
   return (
     <View
-      className={cn(className, "relative flex-row justify-between items-center p-4 w-full")}
+      className={cn(
+        className,
+        "relative flex-row justify-between items-center p-4 w-full",
+      )}
     >
       {renderAction(resolvedLeftAction)}
-      {title ? <AppText variant="h3" className="mt-2">{title}</AppText> : null}
+      {title ? (
+        <AppText variant="h3" className="mt-2">
+          {title}
+        </AppText>
+      ) : null}
       {renderAction(resolvedRightAction)}
     </View>
   );
