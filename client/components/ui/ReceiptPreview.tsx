@@ -1,9 +1,19 @@
 import { Pressable, View } from "react-native";
+import { useRouter } from "expo-router";
 import { Surface, AppText, Icon } from "@/components/ui";
 
-export function ReceiptPreview() {
+interface ReceiptPreviewProps {
+  receiptId: string | number;
+}
+
+export function ReceiptPreview({ receiptId }: ReceiptPreviewProps) {
+  const router = useRouter();
+
   return (
-    <Pressable className="flex-row justify-between active:scale-95 active:opacity-80 transition-all">
+    <Pressable
+      className="flex-row justify-between active:scale-95 active:opacity-80 transition-all"
+      onPress={() => router.push(`/${receiptId}`)}
+    >
       <View className=" flex-row gap-2">
         <Surface variant="secondary" className="flex-none">
           <Icon name="file-text" size="lg" className="text-primary" />
