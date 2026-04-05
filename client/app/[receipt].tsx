@@ -69,7 +69,7 @@ export default function ReceiptDetailPage() {
 
             {/* Merchant */}
             <Surface className="flex-row gap-4">
-              <View className="flex-1 min-w-0 px-2">
+              <View className="flex-1 min-w-0">
                 <AppText variant="body">MERCHANT</AppText>
                 <AppText
                   variant="h1"
@@ -120,7 +120,7 @@ export default function ReceiptDetailPage() {
           </Modal>
 
           {/* Date and Category */}
-          <View className="flex-row justify-between gap-2">
+          <View className="flex-row justify-between gap-4">
             {/* Date */}
             <Surface variant="secondary" className="items-center">
               <View className="flex-row gap-4 items-center">
