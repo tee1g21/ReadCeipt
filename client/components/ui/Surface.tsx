@@ -2,7 +2,7 @@ import { cn } from "@/lib/cn";
 import { cva, type VariantProps } from "class-variance-authority";
 import { View } from "react-native";
 
-const surfaceVariants = cva("rounded-2xl flex-1 p-4", {
+const surfaceVariants = cva("rounded-2xl p-4", {
   variants: {
     variant: {
       primary: "bg-surface drop-shadow-sm",

@@ -92,12 +92,12 @@ export default function Dashboard() {
 
           {/* Top Category and Number Scanned */}
           <View className="flex-row gap-4">
-            <Surface variant="secondary">
+            <Surface variant="secondary" className="flex-1" >
               <Icon name="pie-chart" size="lg" className="text-primary mb-1" />
               <AppText>TOP CATEGORY</AppText>
               <AppText className="font-sans-bold">DINING</AppText>
             </Surface>
-            <Surface variant="secondary">
+            <Surface variant="secondary" className="flex-1">
               <Icon name="file-text" size="lg" className="text-primary mb-1" />
               <AppText>SCANNED</AppText>
               <AppText className="font-sans-bold">42</AppText>
