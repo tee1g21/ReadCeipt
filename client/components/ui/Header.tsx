@@ -82,7 +82,7 @@ export function Header({
     >
       {renderAction(resolvedLeftAction)}
       {title ? (
-        <AppText variant="h3" className="mt-2">
+        <AppText variant="h3" className="mt-1">
           {title}
         </AppText>
       ) : null}

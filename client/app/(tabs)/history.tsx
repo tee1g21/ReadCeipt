@@ -13,7 +13,7 @@ export default function History() {
   return (
     <Screen className="items-center">
       <View className="flex-1 w-full ">
-        <Header />
+        <Header title="History"/>
         <View className="flex-1 gap-4 px-4 ">
           <SearchBar />
           <CategoryFilter />

@@ -32,7 +32,7 @@ export default function Dashboard() {
   return (
     <Screen className="items-center">
       <ScrollView className="flex-1 w-full ">
-        <Header />
+        <Header title="ReadCeipt"/>
         <View className="flex gap-4 px-4">
           {/* Monthly spend view */}
           <Container className="gap-1">
