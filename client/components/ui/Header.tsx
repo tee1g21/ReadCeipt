@@ -41,7 +41,14 @@ export function Header({
 
   const backAction: HeaderAction = {
     icon: "arrow-left",
-    onPress: () => router.back(),
+    onPress: () => {
+      if (router.canGoBack()) {
+        router.back();
+        return;
+      }
+
+      router.replace("/");
+    },
   };
 
   const defaultActions = back
