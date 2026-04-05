@@ -6,17 +6,17 @@ import {
   NavBottomGradient,
 } from "@/components/ui";
 
-interface ReviewReceiptProps {
+interface ConfirmImageProps {
   capturedImage: { uri: string; base64?: string };
   setCapturedImage: React.Dispatch<
     React.SetStateAction<{ uri: string; base64?: string } | null>
   >;
 }
 
-export function ReviewReceipt({
+export function ConfirmImage({
   capturedImage,
   setCapturedImage,
-}: ReviewReceiptProps) {
+}: ConfirmImageProps) {
   const processReceipt = () => {
     console.log("Approved Image URI:", capturedImage?.uri);
   };
