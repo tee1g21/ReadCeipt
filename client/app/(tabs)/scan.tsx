@@ -2,7 +2,7 @@ import { useCameraPermissions } from "expo-camera";
 import { Screen, Button, AppText } from "@/components/ui";
 import ScanInterface from "@/components/scan/ScanInterface";
 import { useState } from "react";
-import { ReviewReceipt } from "@/components/scan/ReviewReceipt";
+import { ConfirmImage } from "@/components/scan/ConfirmImage";
 
 export default function Scan() {
   const [permission, requestPermission] = useCameraPermissions();
@@ -42,7 +42,7 @@ export default function Scan() {
 
   if (capturedImage) {
     return (
-      <ReviewReceipt
+      <ConfirmImage
         capturedImage={capturedImage}
         setCapturedImage={setCapturedImage}
       />
