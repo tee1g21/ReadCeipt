@@ -26,6 +26,9 @@ export default function ReceiptDetailPage() {
     { id: "4", name: "Wholemeal Bread", quantity: 2, unitPrice: 1.2 },
     { id: "5", name: "Semi-Skimmed Milk", quantity: 1, unitPrice: 1.5 },
     { id: "6", name: "Free Range Eggs", quantity: 3, unitPrice: 2.4 },
+    { id: "7", name: "Free Range Eggs", quantity: 3, unitPrice: 2.4 },
+    { id: "8", name: "Free Range Eggs", quantity: 3, unitPrice: 2.4 },
+    { id: "9", name: "Free Range Eggs", quantity: 3, unitPrice: 2.4 },
   ];
 
   return (
@@ -36,14 +39,11 @@ export default function ReceiptDetailPage() {
           title="Review Receipt"
           rightAction={{ icon: "edit-2", onPress: () => {} }}
         />
-        {/* <ScrollView
-          className="flex-1 w-full"
-          showsVerticalScrollIndicator={false}
-        > */}
+
         <View className="gap-4 px-4 pb-4 flex-1 w-full">
           {/* Top Card */}
-          <Surface className="flex-none flex-row items-stretch gap-2 ">
-            <View className="w-1/3 self-stretch">
+          <Surface className="flex-none flex-row items-stretch gap-4">
+            <View className="w-1/4 self-stretch">
               <View className="relative flex-1 rounded-xl overflow-hidden border-2 border-secondary">
                 <Image
                   source={require("@/assets/images/receipt-example.jpg")}
@@ -65,36 +65,28 @@ export default function ReceiptDetailPage() {
               </View>
             </View>
             <View className="flex-1 min-w-0 px-2">
-              <View className="pb-4 ">
-                <AppText variant="body">MERCHANT</AppText>
+              <AppText variant="body">MERCHANT</AppText>
+              <AppText
+                variant="h1"
+                className="text-primary mb-1"
+                numberOfLines={2}
+                ellipsizeMode="tail"
+              >
+                Sainsbury&apos;s
+              </AppText>
+              <View className="flex-row items-start gap-2 min-w-0 mt-1">
+                <Icon
+                  name="map-pin"
+                  size="sm"
+                  className="text-muted mt-0.5 shrink-0"
+                />
                 <AppText
-                  variant="h1"
-                  className="text-primary mb-1"
+                  variant="muted"
+                  className="flex-1 shrink"
                   numberOfLines={2}
                   ellipsizeMode="tail"
                 >
-                  Sainsbury&apos;s
-                </AppText>
-                <View className="flex-row items-start gap-2 min-w-0">
-                  <Icon
-                    name="map-pin"
-                    size="sm"
-                    className="text-muted mt-0.5 shrink-0"
-                  />
-                  <AppText
-                    variant="muted"
-                    className="flex-1 shrink"
-                    numberOfLines={2}
-                    ellipsizeMode="tail"
-                  >
-                    12 Curzon Rd, Sale M33 7SA
-                  </AppText>
-                </View>
-              </View>
-              <View className="mt-2 border-t-2 border-muted flex-row justify-between pt-4 items-end ">
-                <AppText variant="h3">TOTAL</AppText>
-                <AppText variant="h2" className="text-primary">
-                  £104.69
+                  12 Curzon Rd, Sale M33 7SA
                 </AppText>
               </View>
             </View>
@@ -122,23 +114,22 @@ export default function ReceiptDetailPage() {
           </Modal>
 
           {/* Date and Category */}
-          <Surface variant="secondary" className="flex-none gap-6">
-            <View className="flex-row justify-between items-center">
-              <AppText>TRANSACTION DATE</AppText>
+
+          <View className="flex-row justify-between gap-2">
+            <Surface variant="secondary" className="items-center">
               <View className="flex-row gap-4 items-center">
                 <AppText className="font-sans-bold">APR 03, 2026</AppText>
                 <Icon name="calendar" className="text-primary" />
               </View>
-            </View>
+            </Surface>
 
-            <View className="flex-row justify-between items-center">
-              <AppText>CATEGORY</AppText>
+            <Surface variant="secondary" className="items-center">
               <View className="flex-row gap-4 items-center">
                 <AppText className="font-sans-bold">GROCERIES</AppText>
                 <Icon name="chevron-down" className="text-primary" />
               </View>
-            </View>
-          </Surface>
+            </Surface>
+          </View>
 
           {/* Item list */}
           <Surface variant="secondary" className="gap-4 w-full flex-1 min-h-0">
@@ -198,7 +189,6 @@ export default function ReceiptDetailPage() {
           </Surface>
 
           {/* Totals */}
-
           <Surface variant="secondary" className="gap-2 flex-none">
             <View className="flex-row justify-between items-end">
               <AppText variant="muted">SUBTOTAL</AppText>
@@ -221,7 +211,6 @@ export default function ReceiptDetailPage() {
             </View>
           </Surface>
         </View>
-        {/* </ScrollView> */}
       </View>
     </Screen>
   );
