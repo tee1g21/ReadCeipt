@@ -117,9 +117,9 @@ export default function Dashboard() {
             </View>
 
             <View className="gap-4">
-              <ReceiptPreview  />
-              <ReceiptPreview />
-              <ReceiptPreview />
+              <ReceiptPreview receiptId={"recent-1"} />
+              <ReceiptPreview receiptId={"recent-2"} />
+              <ReceiptPreview receiptId={"recent-3"} />
             </View>
           </View>
         </View>

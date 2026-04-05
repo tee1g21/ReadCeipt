@@ -25,8 +25,8 @@ export default function History() {
                 <AppText variant="muted">APR 03, 2026</AppText>
               </View>
               <View className="gap-4">
-                <ReceiptPreview />
-                <ReceiptPreview />
+                <ReceiptPreview receiptId="today-1" />
+                <ReceiptPreview receiptId="today-2" />
               </View>
             </View>
 
@@ -36,9 +36,9 @@ export default function History() {
                 <AppText variant="muted">APR 02, 2026</AppText>
               </View>
               <View className="gap-4">
-                <ReceiptPreview />
-                <ReceiptPreview />
-                <ReceiptPreview />
+                <ReceiptPreview receiptId="yesterday-1" />
+                <ReceiptPreview receiptId="yesterday-2" />
+                <ReceiptPreview receiptId="yesterday-3" />
               </View>
             </View>
 
@@ -48,13 +48,13 @@ export default function History() {
                 <AppText variant="muted">MAR 27, 2026</AppText>
               </View>
               <View className="gap-4">
-                <ReceiptPreview />
-                <ReceiptPreview />
-                <ReceiptPreview />
-                <ReceiptPreview />
-                <ReceiptPreview />
-                <ReceiptPreview />
-                <ReceiptPreview />
+                <ReceiptPreview receiptId="lastweek-1" />
+                <ReceiptPreview receiptId="lastweek-2" />
+                <ReceiptPreview receiptId="lastweek-3" />
+                <ReceiptPreview receiptId="lastweek-4" />
+                <ReceiptPreview receiptId="lastweek-5" />
+                <ReceiptPreview receiptId="lastweek-6" />
+                <ReceiptPreview receiptId="lastweek-7" />
               </View>
             </View>
 
