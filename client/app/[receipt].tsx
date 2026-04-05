@@ -7,12 +7,15 @@ import {
   Surface,
   Icon,
   Button,
+  PressableSurface,
+  AppPressable,
 } from "@/components/ui";
 import { View, ScrollView, Modal, Pressable, Platform } from "react-native";
 import { Image } from "expo-image";
+import { router } from "expo-router";
 
 export default function ReceiptDetailPage() {
-  useLocalSearchParams<{ receipt?: string }>();
+  const { receipt } = useLocalSearchParams<{ receipt?: string }>();
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const lineItems = [
     {
@@ -42,10 +45,9 @@ export default function ReceiptDetailPage() {
 
         {/* Top Cards */}
         <View className="gap-4 px-4 flex-1 w-full">
-          {/* Merchant Card and image */}
-          <View className="flex-row items-stretch gap-4">
+          <View className="flex-row gap-4">
             {/* Image */}
-            <View className="w-1/4">
+            <View className="w-3/12">
               <View className="relative flex-1 rounded-2xl overflow-hidden">
                 <Image
                   source={require("@/assets/images/receipt-example.jpg")}
@@ -67,35 +69,47 @@ export default function ReceiptDetailPage() {
               </View>
             </View>
 
-            {/* Merchant */}
-            <Surface className="flex-row gap-4">
-              <View className="flex-1 min-w-0">
-                <AppText variant="body">MERCHANT</AppText>
-                <AppText
-                  variant="h1"
-                  className="text-primary mb-2"
-                  numberOfLines={2}
-                  ellipsizeMode="tail"
-                >
-                  Sainsbury&apos;s
-                </AppText>
-                <View className="flex-row items-start gap-2 min-w-0">
-                  <Icon
-                    name="map-pin"
-                    size="sm"
-                    className="text-muted mt-0.5 shrink-0"
-                  />
+            {/* Merchant and Category */}
+            <View className="gap-4 flex-1">
+              {/* Merchant */}
+              <Surface className="flex-none flex-row gap-4">
+                <View className="flex-1 min-w-0">
+                  <AppText variant="body">APR 03, 2026 · 15:34 PM</AppText>
+
                   <AppText
-                    variant="muted"
-                    className="flex-1 shrink"
+                    variant="h1"
+                    className="text-primary mb-2 text-3xl"
                     numberOfLines={2}
                     ellipsizeMode="tail"
                   >
-                    12 Curzon Rd, Sale M33 7SA
+                    Sainsbury&apos;s
                   </AppText>
+                  <View className="flex-row items-start gap-2 min-w-0">
+                    <Icon
+                      name="map-pin"
+                      size="sm"
+                      className="text-muted mt-0.5 shrink-0"
+                    />
+                    <AppText
+                      variant="muted"
+                      className="flex-1 shrink"
+                      numberOfLines={2}
+                      ellipsizeMode="tail"
+                    >
+                      12 Curzon Rd, Sale M33 7SA
+                    </AppText>
+                  </View>
                 </View>
-              </View>
-            </Surface>
+              </Surface>
+
+              {/* Category */}
+              <PressableSurface variant="secondary" className="flex-none">
+                <View className="flex-row justify-between items-center">
+                  <AppText className="font-sans-bold">GROCERIES</AppText>
+                  <Icon name="chevron-down" className="text-primary" />
+                </View>
+              </PressableSurface>
+            </View>
           </View>
 
           {/* Maximise image modal */}
@@ -119,32 +133,16 @@ export default function ReceiptDetailPage() {
             </Pressable>
           </Modal>
 
-          {/* Date and Category */}
-          <View className="flex-row justify-between gap-4">
-            {/* Date */}
-            <Surface variant="secondary" className="items-center">
-              <View className="flex-row gap-4 items-center">
-                <AppText className="font-sans-bold">APR 03, 2026</AppText>
-                <Icon name="calendar" className="text-primary" />
-              </View>
-            </Surface>
-
-            {/* Category */}
-            <Surface variant="secondary" className="items-center">
-              <View className="flex-row gap-4 items-center">
-                <AppText className="font-sans-bold">GROCERIES</AppText>
-                <Icon name="chevron-down" className="text-primary" />
-              </View>
-            </Surface>
-          </View>
-
           {/* Item list */}
           <Surface
             variant="primary"
             className="gap-4 w-full flex-none shrink min-h-0"
           >
             {/* Header */}
-            <View className="flex-row justify-between items-center w-full">
+            <AppPressable
+              className="flex-row justify-between items-center w-full"
+              onPress={() => router.push(`/${receipt}/items`)}
+            >
               <View className="flex-row gap-3 items-center">
                 <AppText variant="h3" className="">
                   Items
@@ -159,7 +157,7 @@ export default function ReceiptDetailPage() {
                 </Surface>
               </View>
               <Icon name="maximize-2" className="text-primary" />
-            </View>
+            </AppPressable>
 
             {/* Items */}
             <ScrollView
