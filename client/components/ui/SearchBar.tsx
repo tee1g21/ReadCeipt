@@ -1,4 +1,5 @@
-import { Surface, Icon } from "@/components/ui";
+import { Surface } from "./Surface";
+import { Icon } from "./Icon";
 import { cn } from "@/lib";
 import { TextInput, useColorScheme } from "react-native";
 

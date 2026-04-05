@@ -1,6 +1,8 @@
 import { Pressable, View } from "react-native";
 import { useRouter } from "expo-router";
-import { Surface, AppText, Icon } from "@/components/ui";
+import { Surface } from "./Surface";
+import { AppText } from "./AppText";
+import { Icon } from "./Icon";
 
 interface ReceiptPreviewProps {
   receiptId: string | number;

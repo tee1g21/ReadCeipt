@@ -1,4 +1,5 @@
-import { Button, Icon, type IconName } from "@/components/ui";
+import { Button } from "./Button";
+import { Icon, type IconName } from "./Icon";
 
 interface CameraButtonProps {
   iconName: IconName;
