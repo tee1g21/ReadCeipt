@@ -10,10 +10,10 @@ import {
 
 export default function Dashboard() {
   return (
-    <Screen className="items-center">
-      <ScrollView className="flex-1 w-full">
-        <Header title="ReadCeipt" />
+    <Screen>
+      <Header title="ReadCeipt" />
 
+      <ScrollView className="flex-1 w-full">
         <View className="flex gap-4 px-4">
           <CurrentMonthSpending />
 
