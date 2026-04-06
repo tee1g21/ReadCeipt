@@ -4,10 +4,10 @@ import { CategoryFilter, HistoryContent } from "@/components/history";
 
 export default function History() {
   return (
-    <Screen>
+    <Screen edges={["top", "left", "right"]}>
       <Header title="History" />
 
-      <View className="flex-1 gap-4 px-4 pb-4">
+      <View className="flex-1 gap-4 px-4">
         <SearchBar />
 
         <CategoryFilter />

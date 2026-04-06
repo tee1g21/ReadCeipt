@@ -10,7 +10,7 @@ import {
 
 export function Dashboard() {
   return (
-    <Screen>
+    <Screen edges={["top", "left", "right"]}>
       <Header title="ReadCeipt" />
 
       <ScrollView className="flex-1 w-full">
