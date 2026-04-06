@@ -39,6 +39,7 @@ export default function RootLayout() {
 
   return (
     <Stack
+      initialRouteName="(tabs)"
       screenOptions={{
         headerShown: false,
         animation: "default",
