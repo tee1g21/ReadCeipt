@@ -46,6 +46,13 @@ export default function RootLayout() {
           backgroundColor: isDark ? "#131a2a" : "#F5F6F7",
         },
       }}
-    />
+    >
+      <Stack.Screen
+        name="[receipt]/items"
+        options={{
+          animation: "fade",
+        }}
+      />
+    </Stack>
   );
 }
