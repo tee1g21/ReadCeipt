@@ -29,7 +29,7 @@ export function HistoryContent() {
   ];
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} className="w-full">
+    <ScrollView showsVerticalScrollIndicator={false} className="w-full px-2">
       <View>
         <View className="flex-row items-end justify-between pb-4">
           <AppText variant="h3">{historyItems[0].period}</AppText>
