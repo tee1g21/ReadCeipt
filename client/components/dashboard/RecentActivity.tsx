@@ -1,4 +1,4 @@
-import { AppText, ReceiptPreview, Button } from "@/components/ui";
+import { AppText, Button, ReceiptThumbnail } from "@/components/ui";
 import { View } from "react-native";
 import { router } from "expo-router";
 
@@ -19,7 +19,7 @@ export function RecentActivity() {
 
       <View className="gap-4">
         {activityItems.map((itemId) => (
-          <ReceiptPreview key={itemId} receiptId={itemId} />
+          <ReceiptThumbnail key={itemId} receiptId={itemId} />
         ))}
       </View>
     </View>

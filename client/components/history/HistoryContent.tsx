@@ -1,5 +1,5 @@
 import { View, ScrollView } from "react-native";
-import { Button, AppText, ReceiptPreview } from "@/components/ui";
+import { Button, AppText, ReceiptThumbnail } from "@/components/ui";
 
 export function HistoryContent() {
   const historyItems = [
@@ -38,7 +38,7 @@ export function HistoryContent() {
 
         <View className="gap-4">
           {historyItems[0].itemIds.map((itemId) => (
-            <ReceiptPreview key={itemId} receiptId={itemId} />
+            <ReceiptThumbnail key={itemId} receiptId={itemId} />
           ))}
         </View>
       </View>
@@ -51,7 +51,7 @@ export function HistoryContent() {
           </View>
           <View className="gap-4">
             {item.itemIds.map((itemId) => (
-              <ReceiptPreview key={itemId} receiptId={itemId} />
+              <ReceiptThumbnail key={itemId} receiptId={itemId} />
             ))}
           </View>
         </View>

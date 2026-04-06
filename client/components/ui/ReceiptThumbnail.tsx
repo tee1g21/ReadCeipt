@@ -8,7 +8,7 @@ interface ReceiptPreviewProps {
   receiptId: string | number;
 }
 
-export function ReceiptPreview({ receiptId }: ReceiptPreviewProps) {
+export function ReceiptThumbnail({ receiptId }: ReceiptPreviewProps) {
   const router = useRouter();
 
   return (
@@ -22,7 +22,7 @@ export function ReceiptPreview({ receiptId }: ReceiptPreviewProps) {
         </Surface>
         <View className="">
           <AppText variant="body" className="font-sans-bold">
-            Whole Foods Market
+            {receiptId}
           </AppText>
           <AppText>Today · 2:15 AM</AppText>
         </View>

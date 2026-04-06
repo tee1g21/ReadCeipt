@@ -8,7 +8,7 @@ export { Icon } from "./Icon";
 export type { IconName } from "./Icon";
 export { NavBottomGradient } from "./NavBottomGradient";
 export { PressableSurface } from "./PressableSurface";
-export { ReceiptPreview } from "./ReceiptPreview";
+export { ReceiptThumbnail } from "./ReceiptThumbnail";
 export { SafeContainer } from "./SafeContainer";
 export type { SafeContainerProps } from "./SafeContainer";
 export { Screen } from "./Screen";
