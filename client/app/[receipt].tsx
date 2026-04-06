@@ -48,7 +48,10 @@ export default function ReceiptDetailPage() {
           <View className="flex-row gap-4">
             {/* Image */}
             <View className="w-3/12">
-              <View className="relative flex-1 rounded-2xl overflow-hidden">
+              <AppPressable
+                className="relative flex-1 rounded-2xl overflow-hidden"
+                onPress={() => setIsImageModalOpen(true)}
+              >
                 <Image
                   source={require("@/assets/images/receipt-example.jpg")}
                   style={{ width: "100%", height: "100%" }}
@@ -57,16 +60,13 @@ export default function ReceiptDetailPage() {
                   accessibilityLabel="Receipt image"
                 />
 
-                <Button
+                <Surface
                   variant="secondary"
-                  size="icon"
-                  icon={<Icon name="maximize" size="sm" />}
-                  className="absolute bottom-2 right-2 w-7 h-7"
-                  onPress={() => setIsImageModalOpen(true)}
+                  className="absolute bottom-2 right-2 items-center justify-center p-1.5"
                 >
-                  <Icon name="search" />
-                </Button>
-              </View>
+                  <Icon name="maximize" size="default" className="text-primary z-50"/>
+                </Surface>
+              </AppPressable>
             </View>
 
             {/* Merchant and Category */}
