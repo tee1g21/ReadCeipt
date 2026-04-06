@@ -3,6 +3,8 @@ import { View } from "react-native";
 import { router } from "expo-router";
 
 export function RecentActivity() {
+  const activityItems = ["recent-1", "recent-2", "recent-3"];
+
   return (
     <View className="px-2">
       <View className="flex-row justify-between items-center">
@@ -16,9 +18,9 @@ export function RecentActivity() {
       </View>
 
       <View className="gap-4">
-        <ReceiptPreview receiptId={"recent-1"} />
-        <ReceiptPreview receiptId={"recent-2"} />
-        <ReceiptPreview receiptId={"recent-3"} />
+        {activityItems.map((itemId) => (
+          <ReceiptPreview key={itemId} receiptId={itemId} />
+        ))}
       </View>
     </View>
   );
