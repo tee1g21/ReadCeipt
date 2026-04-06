@@ -1,6 +1,5 @@
 import { Surface } from "./Surface";
 import { Icon } from "./Icon";
-import { cn } from "@/lib";
 import { TextInput, useColorScheme } from "react-native";
 
 export function SearchBar() {
