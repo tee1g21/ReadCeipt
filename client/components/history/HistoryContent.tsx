@@ -1,5 +1,7 @@
 import { View, ScrollView } from "react-native";
-import { Button, AppText, ReceiptThumbnail } from "@/components/ui";
+import { Button, AppText } from "@/components/ui";
+import { ReceiptThumbnailList } from "../ui/ReceiptThumbnailList";
+import { cn } from "@/lib/cn";
 
 export function HistoryContent() {
   const historyItems = [
@@ -30,32 +32,24 @@ export function HistoryContent() {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} className="w-full px-2">
-      <View>
-        <View className="flex-row items-end justify-between pb-4">
-          <AppText variant="h3">{historyItems[0].period}</AppText>
-          <AppText variant="muted">{historyItems[0].date}</AppText>
-        </View>
+      {historyItems.map((item, index) => {
+        const verticalPadding = index === 0 ? "pb-4" : "py-4";
+        return (
+          <View key={item.date}>
+            <View
+              className={cn(
+                "flex-row items-end justify-between",
+                verticalPadding,
+              )}
+            >
+              <AppText variant="h3">{item.period}</AppText>
+              <AppText variant="muted">{item.date}</AppText>
+            </View>
 
-        <View className="gap-4">
-          {historyItems[0].itemIds.map((itemId) => (
-            <ReceiptThumbnail key={itemId} receiptId={itemId} />
-          ))}
-        </View>
-      </View>
-
-      {historyItems.slice(1).map((item) => (
-        <View key={item.date}>
-          <View className="flex-row items-end justify-between py-4">
-            <AppText variant="h3">{item.period}</AppText>
-            <AppText variant="muted">{item.date}</AppText>
+            <ReceiptThumbnailList items={item.itemIds} />
           </View>
-          <View className="gap-4">
-            {item.itemIds.map((itemId) => (
-              <ReceiptThumbnail key={itemId} receiptId={itemId} />
-            ))}
-          </View>
-        </View>
-      ))}
+        );
+      })}
 
       <Button
         variant="secondary"
