@@ -5,6 +5,7 @@ import {
   Icon,
   NavBottomGradient,
 } from "@/components/ui";
+import { router } from "expo-router";
 
 interface ConfirmImageProps {
   capturedImage: { uri: string; base64?: string };
@@ -19,6 +20,10 @@ export function ConfirmImage({
 }: ConfirmImageProps) {
   const processReceipt = () => {
     console.log("Approved Image URI:", capturedImage?.uri);
+    router.push({
+      pathname: "/[receipt]",
+      params: { receipt: "scanned" },
+    });
   };
 
   return (
