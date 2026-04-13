@@ -2,6 +2,7 @@ export { AppText } from "./AppText";
 export { AppPressable } from "./AppPressable";
 export { Button } from "./Button";
 export { CameraButton } from "./CameraButton";
+export { CategoryIcon } from "./CategoryIcon";
 export { Container } from "./Container";
 export { Header } from "./Header";
 export { Icon } from "./Icon";
