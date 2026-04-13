@@ -2,20 +2,17 @@ import { useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { Button } from "@/components/ui";
 
+import { CATEGORY_LIST } from "@/context/useCategories";
+
 const receiptCategories = [
   { key: "all", label: "ALL RECEIPTS" },
-  { key: "groceries", label: "GROCERIES" },
-  { key: "dining", label: "DINING" },
-  { key: "transport", label: "TRANSPORT" },
-  { key: "utilities", label: "UTILITIES" },
-  { key: "entertainment", label: "ENTERTAINMENT" },
-  { key: "shopping", label: "SHOPPING" },
-  { key: "health", label: "HEALTH" },
-  { key: "travel", label: "TRAVEL" },
-  { key: "subscriptions", label: "SUBSCRIPTIONS" },
+  ...CATEGORY_LIST.map((category) => ({
+    key: category.id,
+    label: category.label,
+  })),
 ] as const;
 
-type ReceiptCategoryKey = (typeof receiptCategories)[number]["key"];
+type ReceiptCategoryKey = "all" | (typeof CATEGORY_LIST)[number]["id"];
 
 export function CategoryFilter() {
   const [selectedCategory, setSelectedCategory] =
