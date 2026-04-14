@@ -46,7 +46,8 @@
         {
           "cameraPermission": "Allow ReadCeipt to access your camera to scan your receipts."
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true,
