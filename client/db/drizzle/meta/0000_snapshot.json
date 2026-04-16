@@ -1,11 +1,11 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "74ae6638-c9fe-42ea-abe3-4f4655b11b16",
+  "id": "d5d9da1b-da4f-42ba-9083-2626abd2aa98",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "line_items": {
-      "name": "line_items",
+    "receipt_items": {
+      "name": "receipt_items",
       "columns": {
         "id": {
           "name": "id",
@@ -53,9 +53,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "line_items_receipt_id_receipts_id_fk": {
-          "name": "line_items_receipt_id_receipts_id_fk",
-          "tableFrom": "line_items",
+        "receipt_items_receipt_id_receipts_id_fk": {
+          "name": "receipt_items_receipt_id_receipts_id_fk",
+          "tableFrom": "receipt_items",
           "tableTo": "receipts",
           "columnsFrom": ["receipt_id"],
           "columnsTo": ["id"],

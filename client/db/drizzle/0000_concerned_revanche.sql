@@ -1,4 +1,4 @@
-CREATE TABLE `line_items` (
+CREATE TABLE `receipt_items` (
 	`id` text PRIMARY KEY NOT NULL,
 	`receipt_id` text NOT NULL,
 	`name` text NOT NULL,

@@ -25,8 +25,8 @@ export const receipts = sqliteTable("receipts", {
     .notNull(),
 });
 
-// Line Items Table
-export const items = sqliteTable("line_items", {
+// Receipt Items Table
+export const receiptItems = sqliteTable("receipt_items", {
   id: text("id").primaryKey(),
 
   receiptId: text("receipt_id")

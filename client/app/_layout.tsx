@@ -11,10 +11,8 @@ import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import * as SystemUI from "expo-system-ui";
+import { useInitializeDatabase } from "@/hooks/useInitialiseDatabase";
 
-import { useAppMigrations } from "@/hooks/useAppMigrations";
-
-// Prevent the splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -27,13 +25,13 @@ export default function RootLayout() {
     InclusiveSans_700Bold,
   });
 
-  const { success: dbLoaded, error: dbError } = useAppMigrations();
+  const { dbReady, dbError } = useInitializeDatabase();
 
   useEffect(() => {
-    if (fontsLoaded) {
+    if (fontsLoaded && dbReady) {
       SplashScreen.hideAsync();
     }
-  }, [fontsLoaded]);
+  }, [fontsLoaded, dbReady]);
 
   useEffect(() => {
     SystemUI.setBackgroundColorAsync(isDark ? "#131a2a" : "#F5F6F7");
@@ -43,7 +41,7 @@ export default function RootLayout() {
     console.error("Migration error:", dbError);
   }
 
-  if (!fontsLoaded || !dbLoaded) return null;
+  if (!fontsLoaded || !dbReady) return null;
 
   return (
     <Stack
