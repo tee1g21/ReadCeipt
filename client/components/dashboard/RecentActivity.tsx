@@ -1,10 +1,10 @@
-import { AppText, Button } from "@/components/ui";
+import { AppText, Button, ReceiptThumbnail } from "@/components/ui";
 import { View } from "react-native";
 import { router } from "expo-router";
-import { ReceiptThumbnailList } from "../ui/ReceiptThumbnailList";
+import { getFilteredReceipts } from "@/db/queries/receipts";
 
 export function RecentActivity() {
-  const activityItems = ["recent-1", "recent-2", "recent-3"];
+  const receipts = getFilteredReceipts({ limit: 3 });
 
   return (
     <View className="px-2">
@@ -18,7 +18,11 @@ export function RecentActivity() {
         />
       </View>
 
-      <ReceiptThumbnailList items={activityItems} />
+      <View className="gap-4">
+        {receipts.map((receipt) => (
+          <ReceiptThumbnail key={receipt.id} receipt={receipt} />
+        ))}
+      </View>
     </View>
   );
 }

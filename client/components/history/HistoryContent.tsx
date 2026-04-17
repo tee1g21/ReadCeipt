@@ -1,40 +1,50 @@
-import { View, ScrollView } from "react-native";
-import { Button, AppText } from "@/components/ui";
-import { ReceiptThumbnailList } from "../ui/ReceiptThumbnailList";
+import { View, SectionList } from "react-native";
+import { Button, AppText, ReceiptThumbnail } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { ReceiptSection } from "@/lib/receiptGrouping";
 
 interface HistoryContentProps {
   groupedReceipts: ReceiptSection[];
+  onLoadMore?: () => void;
 }
 
-export function HistoryContent({ groupedReceipts }: HistoryContentProps) {
+export function HistoryContent({
+  groupedReceipts,
+  onLoadMore,
+}: HistoryContentProps) {
   return (
-    <ScrollView showsVerticalScrollIndicator={false} className="w-full px-2">
-      {groupedReceipts.map((section, index) => {
-        const verticalPadding = index === 0 ? "pb-4" : "py-4";
-        return (
-          <View key={section.title}>
-            <View
-              className={cn(
-                "flex-row items-end justify-between",
-                verticalPadding,
-              )}
-            >
-              <AppText variant="h3">{section.title}</AppText>
-              {/*<AppText variant="muted">{section.date}</AppText>*/}
-            </View>
+    <SectionList
+      showsVerticalScrollIndicator={false}
+      className="w-full px-2"
+      sections={groupedReceipts}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => <ReceiptThumbnail receipt={item} />}
+      ItemSeparatorComponent={() => <View className="h-4" />}
+      renderSectionHeader={({ section }) => {
+        const isFirstSection = section === groupedReceipts[0];
+        const verticalPadding = isFirstSection ? "pb-4" : "py-4";
 
-            <ReceiptThumbnailList receipts={section.receipts} />
+        return (
+          <View
+            className={cn(
+              "flex-row items-end justify-between",
+              verticalPadding,
+            )}
+          >
+            <AppText variant="h3">{section.title}</AppText>
+            {/* <AppText variant="muted">{section.date}</AppText> */}
           </View>
         );
-      })}
-
-      <Button
-        variant="secondary"
-        className="w-2/3 self-center m-6"
-        label="LOAD MORE"
-      />
-    </ScrollView>
+      }}
+      ListFooterComponent={
+        <Button
+          variant="secondary"
+          className="w-2/3 self-center m-6"
+          label="LOAD MORE"
+          onPress={onLoadMore}
+        />
+      }
+      stickySectionHeadersEnabled={false}
+    />
   );
 }
