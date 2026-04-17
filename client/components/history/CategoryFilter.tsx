@@ -1,29 +1,33 @@
 import { useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { Button } from "@/components/ui";
-
+import { type ReceiptCategoryId } from "@/app/(tabs)/history";
 import { CATEGORY_LIST } from "@/context/useCategories";
 
 const receiptCategories = [
-  { key: "all", label: "ALL RECEIPTS" },
+  { id: "all", label: "ALL RECEIPTS" },
   ...CATEGORY_LIST.map((category) => ({
-    key: category.id,
+    id: category.id,
     label: category.label,
   })),
 ] as const;
 
-type ReceiptCategoryKey = "all" | (typeof CATEGORY_LIST)[number]["id"];
+interface CategoryFilterProps {
+  selectedCategory: ReceiptCategoryId;
+  setSelectedCategory: (key: ReceiptCategoryId) => void;
+}
 
-export function CategoryFilter() {
-  const [selectedCategory, setSelectedCategory] =
-    useState<ReceiptCategoryKey>("all");
+export function CategoryFilter({
+  selectedCategory,
+  setSelectedCategory,
+}: CategoryFilterProps) {
   const [scrollViewWidth, setScrollViewWidth] = useState(0);
   const [categoryLayouts, setCategoryLayouts] = useState<
-    Partial<Record<ReceiptCategoryKey, { x: number; width: number }>>
+    Partial<Record<ReceiptCategoryId, { x: number; width: number }>>
   >({});
   const categoryScrollRef = useRef<ScrollView>(null);
 
-  const handleSelectCategory = (key: ReceiptCategoryKey) => {
+  const handleSelectCategory = (key: ReceiptCategoryId) => {
     setSelectedCategory(key);
 
     const layout = categoryLayouts[key];
@@ -52,23 +56,21 @@ export function CategoryFilter() {
     >
       {receiptCategories.map((category) => (
         <View
-          key={category.key}
+          key={category.id}
           onLayout={(event) => {
             const { x, width } = event.nativeEvent.layout;
 
             setCategoryLayouts((prev) => ({
               ...prev,
-              [category.key]: { x, width },
+              [category.id]: { x, width },
             }));
           }}
         >
           <Button
-            variant={
-              selectedCategory === category.key ? "primary" : "secondary"
-            }
+            variant={selectedCategory === category.id ? "primary" : "secondary"}
             size="sm"
             label={category.label}
-            onPress={() => handleSelectCategory(category.key)}
+            onPress={() => handleSelectCategory(category.id)}
           />
         </View>
       ))}
