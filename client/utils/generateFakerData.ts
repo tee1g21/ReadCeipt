@@ -1,32 +1,10 @@
 import { faker } from "@faker-js/faker";
 import { CATEGORY_LIST } from "@/context/useCategories";
-
-export interface GeneratedReceipt {
-  id: string;
-  merchant: string;
-  address: string | null;
-  dateTimestamp: number;
-  categoryId: string;
-  subtotal: number;
-  discounts: number;
-  totalAmount: number;
-  imageUri: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface GeneratedLineItem {
-  id: string;
-  receiptId: string;
-  name: string;
-  quantity: number;
-  unitPrice: number;
-  totalPrice: number;
-}
+import { Receipt, ReceiptItem } from "@/db/schema";
 
 export function generateFakerData(numReceipts = 50) {
-  const receipts: GeneratedReceipt[] = [];
-  const items: GeneratedLineItem[] = [];
+  const receipts: Receipt[] = [];
+  const items: ReceiptItem[] = [];
 
   for (let i = 0; i < numReceipts; i++) {
     const receiptId = faker.string.uuid();

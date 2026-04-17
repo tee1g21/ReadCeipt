@@ -39,3 +39,6 @@ export const receiptItems = sqliteTable("receipt_items", {
   unitPrice: real("unit_price").notNull(),
   totalPrice: real("total_price").notNull(),
 });
+
+export type Receipt = typeof receipts.$inferSelect;
+export type ReceiptItem = typeof receiptItems.$inferSelect;
