@@ -1,8 +1,13 @@
 import { Surface } from "./Surface";
 import { Icon } from "./Icon";
-import { TextInput, useColorScheme } from "react-native";
+import { TextInput, TextInputProps, useColorScheme } from "react-native";
+import { cn } from "@/lib/cn";
 
-export function SearchBar() {
+export interface SearchBarProps extends TextInputProps {
+  className?: string;
+}
+
+export function SearchBar({ className, ...props }: SearchBarProps) {
   const isDark = useColorScheme() === "dark";
   const placeholderColor = isDark ? "#b9c9c4" : "#414a4c";
 
@@ -14,8 +19,12 @@ export function SearchBar() {
       <Icon name="search" size="default" className="text-body" />
       <TextInput
         placeholder="Search"
-        className="w-full p-4 text-body text-lg web:outline-none"
         placeholderTextColor={placeholderColor}
+        className={cn(
+          "w-full p-4 text-body text-lg web:outline-none",
+          className,
+        )}
+        {...props}
       />
     </Surface>
   );
