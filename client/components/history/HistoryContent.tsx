@@ -36,13 +36,22 @@ export function HistoryContent({
           </View>
         );
       }}
+      ListEmptyComponent={
+        <View className="flex-1 items-center justify-center pt-8">
+          <AppText variant="muted" className="text-lg">
+            No receipts found
+          </AppText>
+        </View>
+      }
       ListFooterComponent={
-        <Button
-          variant="secondary"
-          className="w-2/3 self-center m-6"
-          label="LOAD MORE"
-          onPress={onLoadMore}
-        />
+        groupedReceipts.length > 0 ? (
+          <Button
+            variant="secondary"
+            className="w-2/3 self-center m-6"
+            label="LOAD MORE"
+            onPress={onLoadMore}
+          />
+        ) : null
       }
       stickySectionHeadersEnabled={false}
     />
