@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { CATEGORY_LIST } from "@/context/useCategories";
 import { Receipt, ReceiptItem } from "@/db/schema";
 
-export function generateFakerData(numReceipts = 50) {
+export function generateFakerData(numReceipts = 200) {
   const receipts: Receipt[] = [];
   const items: ReceiptItem[] = [];
 

@@ -16,7 +16,7 @@ export async function seedDatabase() {
 
     console.log("Seeding Mobile Database with dummy data...");
 
-    const { receipts: newReceipts, items: newItems } = generateFakerData(50);
+    const { receipts: newReceipts, items: newItems } = generateFakerData();
 
     await db.transaction(async (tx) => {
       await tx.insert(receipts).values(newReceipts);

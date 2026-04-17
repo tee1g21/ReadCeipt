@@ -1,6 +1,6 @@
 import { generateFakerData } from "@/utils/generateFakerData";
 
-const { receipts, items } = generateFakerData(50);
+const { receipts, items } = generateFakerData();
 
 export const mockDb = {
   receipts,
