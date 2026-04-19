@@ -19,7 +19,7 @@ export interface FetchReceiptsParams {
 export function getFilteredReceipts({
   categoryId,
   searchQuery,
-  limit = 30,
+  limit,
   offset = 0,
 }: FetchReceiptsParams): Receipt[] {
   let filtered = [...mockDb.receipts];
@@ -42,5 +42,6 @@ export function getFilteredReceipts({
 
   filtered.sort((a, b) => b.dateTimestamp - a.dateTimestamp);
 
-  return filtered.slice(offset, offset + limit);
+  const end = limit !== undefined ? offset + limit : undefined;
+  return filtered.slice(offset, end);
 }

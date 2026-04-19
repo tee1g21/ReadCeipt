@@ -24,7 +24,7 @@ export interface FetchReceiptsParams {
 export function getFilteredReceipts({
   categoryId,
   searchQuery,
-  limit = 30,
+  limit,
   offset = 0,
 }: FetchReceiptsParams): Receipt[] {
   const filters = [];
@@ -45,12 +45,16 @@ export function getFilteredReceipts({
     );
   }
 
-  return db
+  const filteredReceipts = db
     .select()
     .from(receipts)
     .where(filters.length > 0 ? and(...filters) : undefined)
     .orderBy(desc(receipts.dateTimestamp))
-    .limit(limit)
-    .offset(offset)
-    .all();
+    .offset(offset);
+
+  if (limit) {
+    return filteredReceipts.limit(limit).all();
+  }
+
+  return filteredReceipts.all();
 }

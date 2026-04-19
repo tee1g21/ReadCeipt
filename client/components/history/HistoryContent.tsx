@@ -1,5 +1,5 @@
 import { View, SectionList } from "react-native";
-import { Button, AppText, ReceiptThumbnail } from "@/components/ui";
+import { AppText, ReceiptThumbnail } from "@/components/ui";
 import { cn } from "@/lib/cn";
 import { ReceiptSection } from "@/lib/receiptGrouping";
 
@@ -12,6 +12,11 @@ export function HistoryContent({
   groupedReceipts,
   onLoadMore,
 }: HistoryContentProps) {
+  const totalReceipts = groupedReceipts.reduce(
+    (sum, section) => sum + section.data.length,
+    0,
+  );
+
   return (
     <SectionList
       showsVerticalScrollIndicator={false}
@@ -45,12 +50,11 @@ export function HistoryContent({
       }
       ListFooterComponent={
         groupedReceipts.length > 0 ? (
-          <Button
-            variant="secondary"
-            className="w-2/3 self-center m-6"
-            label="LOAD MORE"
-            onPress={onLoadMore}
-          />
+          <View className="py-10 items-center justify-center">
+            <AppText variant="muted">
+              Showing all {totalReceipts} matching receipts
+            </AppText>
+          </View>
         ) : null
       }
       stickySectionHeadersEnabled={false}
