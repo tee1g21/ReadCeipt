@@ -29,7 +29,10 @@ export default function History() {
           setSelectedCategory={setSelectedCategory}
         />
 
-        <HistoryContent groupedReceipts={groupedReceipts} />
+        <HistoryContent
+          key={`${selectedCategory}-${searchQuery}`}
+          groupedReceipts={groupedReceipts}
+        />
       </View>
     </Screen>
   );
