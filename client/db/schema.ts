@@ -17,6 +17,8 @@ export const receipts = sqliteTable("receipts", {
 
   imageUri: text("image_uri"),
 
+  viewedAtTimestamp: integer("viewed_at_timestamp"),
+
   createdAt: text("created_at")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),

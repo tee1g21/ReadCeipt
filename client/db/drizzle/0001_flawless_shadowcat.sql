@@ -1,0 +1,1 @@
+ALTER TABLE `receipts` ADD `viewed_at_timestamp` integer;

@@ -49,16 +49,22 @@ export function generateFakerData(numReceipts = 200) {
     const totalAmount = Number((calculatedSubtotal - discounts).toFixed(2));
     const now = new Date().toISOString();
 
+    const dateTimestamp = faker.date.recent({ days: 180 }).getTime();
+    const viewedAtTimestamp = faker.date
+      .between({ from: dateTimestamp, to: new Date() })
+      .getTime();
+
     receipts.push({
       id: receiptId,
       merchant: faker.company.name(),
       address: faker.location.streetAddress(),
-      dateTimestamp: faker.date.recent({ days: 180 }).getTime(),
+      dateTimestamp,
       categoryId: faker.helpers.arrayElement(CATEGORY_LIST.map((c) => c.id)),
       subtotal: Number(calculatedSubtotal.toFixed(2)),
       discounts,
       totalAmount,
       imageUri: `https://picsum.photos/seed/${receiptId}/400/600`,
+      viewedAtTimestamp,
       createdAt: now,
       updatedAt: now,
     });
