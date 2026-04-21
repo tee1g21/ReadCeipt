@@ -38,7 +38,7 @@ export function generateFakerData(numReceipts = 200) {
       ? Number(
           faker.number
             .float({
-              min: 0.5,
+              min: 0,
               max: calculatedSubtotal * 0.1,
               fractionDigits: 2,
             })
