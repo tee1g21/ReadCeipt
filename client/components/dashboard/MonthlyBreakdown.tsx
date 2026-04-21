@@ -18,15 +18,20 @@ export function MonthlyBreakdown() {
           {chartYear}
         </AppText>
       </View>
-      <View className="flex-row gap-x-2 w-full">
+      <View className="flex-row gap-x-2 w-full justify-center">
         {monthlyBreakdown.map(({ label, amount }, index) => {
           const heightPercentage = (amount / maxSpend) * 100;
 
           const isCurrentMonth = index === monthlyBreakdown.length - 1;
 
           return (
-            <View key={label} className="flex-1 items-center gap-2">
-              <View className="w-full h-32 justify-end">
+            <View key={label} className="flex-1 items-center gap-2 max-w-16">
+              <View
+                className={cn(
+                  "w-full h-32 justify-end  rounded-md overflow-hidden",
+                  isCurrentMonth ? "bg-primary/15" : "bg-muted/10",
+                )}
+              >
                 <View
                   className={cn(
                     "w-full rounded-md",
