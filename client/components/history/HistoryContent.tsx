@@ -51,7 +51,7 @@ export function HistoryContent({
       ListFooterComponent={
         groupedReceipts.length > 0 ? (
           <View className="py-10 items-center justify-center">
-            <AppText variant="muted">
+            <AppText variant="muted" className="text-lg">
               Showing all {totalReceipts} matching receipts
             </AppText>
           </View>
