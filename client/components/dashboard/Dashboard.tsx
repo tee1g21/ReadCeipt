@@ -2,7 +2,7 @@ import { Screen, Header } from "@/components/ui";
 import { View, ScrollView } from "react-native";
 import {
   CurrentMonthSpending,
-  MonthlyBreakdown,
+  MonthlySpendGraph,
   NumberScanned,
   RecentActivity,
   TopCategory,
@@ -17,7 +17,7 @@ export function Dashboard() {
         <View className="flex gap-4 px-4">
           <CurrentMonthSpending />
 
-          <MonthlyBreakdown />
+          <MonthlySpendGraph />
 
           <View className="flex-row gap-4">
             <TopCategory />

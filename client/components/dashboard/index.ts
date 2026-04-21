@@ -1,5 +1,5 @@
 export { CurrentMonthSpending } from "./CurrentMonthSpending";
-export { MonthlyBreakdown } from "./MonthlyBreakdown";
+export { MonthlySpendGraph } from "./MonthlySpendGraph";
 export { NumberScanned } from "./NumberScanned";
 export { RecentActivity } from "./RecentActivity";
 export { TopCategory } from "./TopCategory";
