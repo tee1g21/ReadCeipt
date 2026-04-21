@@ -1,6 +1,15 @@
 import { mockDb } from "../mockDb";
 import { Receipt, ReceiptItem } from "../schema";
 
+export function getReceiptsFromDate(dateTimestamp: number) {
+  return mockDb.receipts
+    .filter((r) => r.dateTimestamp >= dateTimestamp)
+    .map((r) => ({
+      totalAmount: r.totalAmount,
+      dateTimestamp: r.dateTimestamp,
+    }));
+}
+
 export function getReceiptById(id: string): Receipt | undefined {
   return mockDb.receipts.find((receipt) => receipt.id === id);
 }

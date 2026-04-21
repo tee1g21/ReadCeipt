@@ -1,5 +1,5 @@
 import { Surface, Icon, AppText } from "@/components/ui";
-import { useDashboardStats } from "@/hooks/useDashboardStats";
+import { useDashboardStats } from "@/hooks/dashboard/useDashboardStats";
 import { getCategory } from "@/context/useCategories";
 
 export function TopCategory() {

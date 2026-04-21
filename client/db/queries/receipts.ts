@@ -1,6 +1,16 @@
-import { eq, desc, like, and, or, sql } from "drizzle-orm";
+import { eq, desc, like, and, or, sql, gte } from "drizzle-orm";
 import { db } from "../client";
 import { receipts, Receipt, receiptItems, ReceiptItem } from "../schema";
+
+export function getReceiptsFromDateQuery(dateTimestamp: number) {
+  return db
+    .select({
+      totalAmount: receipts.totalAmount,
+      dateTimestamp: receipts.dateTimestamp,
+    })
+    .from(receipts)
+    .where(gte(receipts.dateTimestamp, dateTimestamp));
+}
 
 export function getReceiptById(id: string): Receipt | undefined {
   return db.select().from(receipts).where(eq(receipts.id, id)).limit(1).get();

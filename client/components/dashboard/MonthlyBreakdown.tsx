@@ -1,21 +1,12 @@
 import { Surface, AppText } from "@/components/ui";
 import { View } from "react-native";
 import { cn } from "@/lib/cn";
+import { useMonthlyBreakdown } from "@/hooks/dashboard/useMonthlyBreakdown";
 
 export function MonthlyBreakdown() {
-  const monthlySpend = {
-    Oct: 120,
-    Nov: 300,
-    Dec: 150,
-    Jan: 400,
-    Feb: 200,
-    Mar: 500,
-    Apr: 100,
-  };
+  const { monthlyBreakdown, chartYear } = useMonthlyBreakdown();
 
-  const monthlySpendEntries = Object.entries(monthlySpend);
-  const maxSpend = Math.max(...Object.values(monthlySpend));
-  const chartYear = "2025–2026";
+  const maxSpend = Math.max(...monthlyBreakdown.map((m) => m.amount), 1);
 
   return (
     <Surface>
@@ -28,15 +19,13 @@ export function MonthlyBreakdown() {
         </AppText>
       </View>
       <View className="flex-row gap-x-2 w-full">
-        {monthlySpendEntries.map(([month, amount], index) => {
-          // 3. Calculate how tall this specific bar should be
+        {monthlyBreakdown.map(({ label, amount }, index) => {
           const heightPercentage = (amount / maxSpend) * 100;
 
-          // Highlight the current month (the last item in the array)
-          const isCurrentMonth = index === monthlySpendEntries.length - 1;
+          const isCurrentMonth = index === monthlyBreakdown.length - 1;
 
           return (
-            <View key={month} className="flex-1 items-center gap-2">
+            <View key={label} className="flex-1 items-center gap-2">
               <View className="w-full h-32 justify-end">
                 <View
                   className={cn(
@@ -47,7 +36,7 @@ export function MonthlyBreakdown() {
                 />
               </View>
               <AppText variant="muted" className="text-center text-[10px]">
-                {month}
+                {label}
               </AppText>
             </View>
           );
