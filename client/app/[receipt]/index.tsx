@@ -4,7 +4,7 @@ import { ImagePreview } from "@/components/receipt-detail-screen/ImagePreview";
 import { DateTimeMerchantAddressCard } from "@/components/receipt-detail-screen/DateTimeMerchantAddressCard";
 import { CategorySelector } from "@/components/receipt-detail-screen/CategorySelector";
 import { TotalsCard } from "@/components/receipt-detail-screen/TotalsCard";
-import { ItemsCard } from "@/components/receipt-detail-screen/items/ItemsCard";
+import { ItemsCard } from "@/components/receipt-detail-screen/ItemsCard";
 
 export default function ReceiptDetailScreen() {
   return (

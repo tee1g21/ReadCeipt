@@ -1,4 +1,4 @@
-import { ItemsCard } from "@/components/receipt-detail-screen/items/ItemsCard";
+import { ItemsCard } from "@/components/receipt-detail-screen/ItemsCard";
 import { Screen } from "@/components/ui";
 
 export default function MaximisedItemsScreen() {
