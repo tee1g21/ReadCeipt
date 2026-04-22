@@ -1,19 +1,40 @@
 import { Screen, Header } from "@/components/ui";
 import { View } from "react-native";
-import { ImagePreview } from "@/components/receipt-detail-screen/ImagePreview";
-import { DateTimeMerchantAddressCard } from "@/components/receipt-detail-screen/DateTimeMerchantAddressCard";
-import { CategorySelector } from "@/components/receipt-detail-screen/CategorySelector";
-import { TotalsCard } from "@/components/receipt-detail-screen/TotalsCard";
-import { ItemsCard } from "@/components/receipt-detail-screen/ItemsCard";
+import { ImagePreview } from "@/components/receiptDetailScreen/ImagePreview";
+import { DateTimeMerchantAddressCard } from "@/components/receiptDetailScreen/DateTimeMerchantAddressCard";
+import { CategorySelector } from "@/components/receiptDetailScreen/CategorySelector";
+import { TotalsCard } from "@/components/receiptDetailScreen/TotalsCard";
+import { ItemsCard } from "@/components/receiptDetailScreen/ItemsCard";
+import { useLocalSearchParams } from "expo-router";
+import { useReceiptDetailScreen } from "@/hooks/receiptDetailScreen/useReceiptDetailScreen";
+import { markReceiptAsViewed } from "@/db/queries/receipts";
+import { useEffect } from "react";
 
 export default function ReceiptDetailScreen() {
+  const { receiptId } = useLocalSearchParams<{ receiptId: string }>();
+  const { receipt } = useReceiptDetailScreen(receiptId || "");
+
+  useEffect(() => {
+    if (receipt) {
+      markReceiptAsViewed(receipt.id);
+    }
+  }, [receipt]);
+
+  if (!receipt) {
+    return (
+      <Screen>
+        <Header back title="Loading..." />
+      </Screen>
+    );
+  }
+
   return (
     <Screen className="items-center">
       <View className="flex-1 w-full">
         <Header
           back
-          title="Review Receipt Test"
-          rightAction={{ icon: "edit-2", onPress: () => {} }}
+          title="Receipt"
+          // rightAction={{ icon: "edit-2", onPress: () => {} }}
         />
 
         <View className="gap-4 px-4 flex-1 w-full">
@@ -23,15 +44,15 @@ export default function ReceiptDetailScreen() {
             </View>
 
             <View className="gap-4 flex-1">
-              <DateTimeMerchantAddressCard />
+              <DateTimeMerchantAddressCard receipt={receipt} />
 
-              <CategorySelector />
+              <CategorySelector receipt={receipt} />
             </View>
           </View>
 
-          <ItemsCard />
+          <ItemsCard receipt={receipt} />
         </View>
-        <TotalsCard />
+        <TotalsCard receipt={receipt} />
       </View>
     </Screen>
   );

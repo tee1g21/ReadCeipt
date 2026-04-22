@@ -21,8 +21,8 @@ export function ConfirmImage({
   const processReceipt = () => {
     console.log("Approved Image URI:", capturedImage?.uri);
     router.push({
-      pathname: "/[receipt]",
-      params: { receipt: "scanned" },
+      pathname: "/[receiptId]",
+      params: { receiptId: "scanned" },
     });
   };
 

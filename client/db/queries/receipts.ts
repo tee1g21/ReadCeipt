@@ -1,6 +1,6 @@
 import { eq, desc, like, and, or, sql, gte } from "drizzle-orm";
 import { db } from "../client";
-import { receipts, Receipt, receiptItems, ReceiptItem } from "../schema";
+import { receipts, Receipt } from "../schema";
 
 export function getReceiptsFromDateQuery(dateTimestamp: number) {
   return db
@@ -10,18 +10,6 @@ export function getReceiptsFromDateQuery(dateTimestamp: number) {
     })
     .from(receipts)
     .where(gte(receipts.dateTimestamp, dateTimestamp));
-}
-
-export function getReceiptById(id: string): Receipt | undefined {
-  return db.select().from(receipts).where(eq(receipts.id, id)).limit(1).get();
-}
-
-export function getReceiptItems(receiptId: string): ReceiptItem[] {
-  return db
-    .select()
-    .from(receiptItems)
-    .where(eq(receiptItems.receiptId, receiptId))
-    .all();
 }
 
 export interface FetchReceiptsParams {
@@ -67,4 +55,16 @@ export function getFilteredReceipts({
   }
 
   return filteredReceipts.all();
+}
+
+export async function markReceiptAsViewed(receiptId: string) {
+  try {
+    await db
+      .update(receipts)
+      .set({ viewedAtTimestamp: Date.now() })
+      .where(eq(receipts.id, receiptId));
+    console.log("Receipt marked as viewed:", receiptId);
+  } catch (error) {
+    console.error("Failed to mark receipt as viewed:", error);
+  }
 }

@@ -1,11 +1,21 @@
 import { PressableSurface, AppText, Icon } from "@/components/ui";
 import { View } from "react-native";
+import { Receipt } from "@/db/schema";
+import { formatReceiptDetailTimeStamp } from "@/lib/dateFormatter";
 
-export function DateTimeMerchantAddressCard() {
+interface DateTimeMerchantAddressCardProps {
+  receipt: Receipt;
+}
+
+export function DateTimeMerchantAddressCard({
+  receipt,
+}: DateTimeMerchantAddressCardProps) {
   return (
     <PressableSurface className="flex-none flex-row gap-4">
       <View className="flex-1 min-w-0">
-        <AppText variant="body">APR 03, 2026 · 15:34 PM</AppText>
+        <AppText variant="body">
+          {formatReceiptDetailTimeStamp(receipt.dateTimestamp)}
+        </AppText>
 
         <AppText
           variant="h1"
@@ -13,7 +23,7 @@ export function DateTimeMerchantAddressCard() {
           numberOfLines={2}
           ellipsizeMode="tail"
         >
-          Sainsbury&apos;s
+          {receipt.merchant}
         </AppText>
         <View className="flex-row items-start gap-2 min-w-0">
           <Icon
@@ -27,7 +37,7 @@ export function DateTimeMerchantAddressCard() {
             numberOfLines={2}
             ellipsizeMode="tail"
           >
-            12 Curzon Rd, Sale M33 7SA
+            {receipt.address}
           </AppText>
         </View>
       </View>

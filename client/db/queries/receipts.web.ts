@@ -1,5 +1,5 @@
 import { mockDb } from "../mockDb";
-import { Receipt, ReceiptItem } from "../schema";
+import { Receipt } from "../schema";
 
 export function getReceiptsFromDate(dateTimestamp: number) {
   return mockDb.receipts
@@ -8,14 +8,6 @@ export function getReceiptsFromDate(dateTimestamp: number) {
       totalAmount: r.totalAmount,
       dateTimestamp: r.dateTimestamp,
     }));
-}
-
-export function getReceiptById(id: string): Receipt | undefined {
-  return mockDb.receipts.find((receipt) => receipt.id === id);
-}
-
-export function getReceiptItems(receiptId: string): ReceiptItem[] {
-  return mockDb.items.filter((item) => item.receiptId === receiptId);
 }
 
 export interface FetchReceiptsParams {
@@ -53,4 +45,11 @@ export function getFilteredReceipts({
 
   const end = limit !== undefined ? offset + limit : undefined;
   return filtered.slice(offset, end);
+}
+
+export async function markReceiptAsViewed(receiptId: string): Promise<void> {
+  const receipt = mockDb.receipts.find((r) => r.id === receiptId);
+  if (receipt) {
+    receipt.viewedAtTimestamp = Date.now();
+  }
 }

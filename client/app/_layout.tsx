@@ -54,8 +54,9 @@ export default function RootLayout() {
         },
       }}
     >
+      <Stack.Screen name="[receiptId]/index" />
       <Stack.Screen
-        name="[receipt]/items"
+        name="[receiptId]/items"
         options={{
           animation: "fade",
         }}
