@@ -77,16 +77,22 @@ export function Header({
     <View
       className={cn(
         className,
-        "relative flex-row justify-between items-center p-4 w-full",
+        "relative flex-row justify-between items-center p-4 w-full min-h-14",
       )}
     >
-      {renderAction(resolvedLeftAction)}
       {title ? (
-        <AppText variant="h3" className="mt-1">
-          {title}
-        </AppText>
+        <View
+          className="absolute inset-0 items-center justify-center"
+          pointerEvents="none"
+        >
+          <AppText variant="h3" className="mt-1">
+            {title}
+          </AppText>
+        </View>
       ) : null}
-      {renderAction(resolvedRightAction)}
+
+      <View className="z-10">{renderAction(resolvedLeftAction)}</View>
+      <View className="z-10">{renderAction(resolvedRightAction)}</View>
     </View>
   );
 }
