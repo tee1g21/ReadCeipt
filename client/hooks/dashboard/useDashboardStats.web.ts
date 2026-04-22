@@ -1,9 +1,12 @@
-import { useMemo } from "react";
+import { useState, useCallback } from "react";
+import { useFocusEffect } from "expo-router";
 import { startOfMonth, endOfMonth, isWithinInterval } from "date-fns";
 import { mockDb } from "@/db/mockDb";
 
 export function useDashboardStats() {
-  const stats = useMemo(() => {
+  const [stats, setStats] = useState(() => calculateStats());
+
+  function calculateStats() {
     const now = new Date();
     const monthStart = startOfMonth(now);
     const monthEnd = endOfMonth(now);
@@ -34,12 +37,24 @@ export function useDashboardStats() {
       }
     }
 
+    const recentActivity = [...mockDb.receipts]
+      .filter((r) => r.viewedAtTimestamp !== null)
+      .sort((a, b) => (b.viewedAtTimestamp || 0) - (a.viewedAtTimestamp || 0))
+      .slice(0, 3);
+
     return {
       currentMonthSpend,
       totalScanned: mockDb.receipts.length,
       topCategoryId,
+      recentActivity,
     };
-  }, []);
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      setStats(calculateStats());
+    }, []),
+  );
 
   return stats;
 }

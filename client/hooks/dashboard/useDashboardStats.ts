@@ -1,39 +1,58 @@
-import { useLiveQuery } from "drizzle-orm/expo-sqlite";
 import { db } from "@/db/client";
 import { receipts } from "@/db/schema";
-import { sum, count, desc, between } from "drizzle-orm";
+import { sum, count, desc, between, isNotNull } from "drizzle-orm";
 import { startOfMonth, endOfMonth } from "date-fns";
+import { useState, useCallback } from "react";
+import { useFocusEffect } from "expo-router";
 
 export function useDashboardStats() {
-  const now = new Date();
-  const monthStart = startOfMonth(now).getTime();
-  const monthEnd = endOfMonth(now).getTime();
+  const [stats, setStats] = useState(() => calculateStats());
 
-  const { data: currentMonthSpendData } = useLiveQuery(
-    db
-      .select({
-        totalSpend: sum(receipts.totalAmount),
-      })
+  function calculateStats() {
+    const now = new Date();
+    const monthStart = startOfMonth(now).getTime();
+    const monthEnd = endOfMonth(now).getTime();
+
+    const spendResult = db
+      .select({ totalSpend: sum(receipts.totalAmount) })
       .from(receipts)
-      .where(between(receipts.dateTimestamp, monthStart, monthEnd)),
-  );
+      .where(between(receipts.dateTimestamp, monthStart, monthEnd))
+      .get();
 
-  const { data: totalScannedData } = useLiveQuery(
-    db.select({ totalScanned: count(receipts.id) }).from(receipts),
-  );
+    const scannedResult = db
+      .select({ totalScanned: count(receipts.id) })
+      .from(receipts)
+      .get();
 
-  const { data: topCategoryData } = useLiveQuery(
-    db
+    const topCategoryResult = db
       .select({ categoryId: receipts.categoryId })
       .from(receipts)
       .groupBy(receipts.categoryId)
       .orderBy(desc(count(receipts.id)))
-      .limit(1),
+      .limit(1)
+      .get();
+
+    const recentActivity = db
+      .select()
+      .from(receipts)
+      .where(isNotNull(receipts.viewedAtTimestamp))
+      .orderBy(desc(receipts.viewedAtTimestamp))
+      .limit(3)
+      .all();
+
+    return {
+      currentMonthSpend: Number(spendResult?.totalSpend) || 0,
+      totalScanned: scannedResult?.totalScanned || 0,
+      topCategoryId: topCategoryResult?.categoryId || null,
+      recentActivity: recentActivity || [],
+    };
+  }
+
+  useFocusEffect(
+    useCallback(() => {
+      setStats(calculateStats());
+    }, []),
   );
 
-  return {
-    currentMonthSpend: Number(currentMonthSpendData?.[0]?.totalSpend) || 0,
-    totalScanned: totalScannedData?.[0]?.totalScanned || 0,
-    topCategoryId: topCategoryData?.[0]?.categoryId || null,
-  };
+  return stats;
 }

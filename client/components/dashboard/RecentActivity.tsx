@@ -1,10 +1,10 @@
 import { AppText, Button, ReceiptThumbnail } from "@/components/ui";
 import { View } from "react-native";
 import { router } from "expo-router";
-import { getFilteredReceipts } from "@/db/queries/receipts";
+import { useDashboardStats } from "@/hooks/dashboard/useDashboardStats";
 
 export function RecentActivity() {
-  const receipts = getFilteredReceipts({ limit: 3 });
+  const { recentActivity } = useDashboardStats();
 
   return (
     <View className="px-2">
@@ -19,7 +19,7 @@ export function RecentActivity() {
       </View>
 
       <View className="gap-4">
-        {receipts.map((receipt) => (
+        {recentActivity.map((receipt) => (
           <ReceiptThumbnail key={receipt.id} receipt={receipt} />
         ))}
       </View>
