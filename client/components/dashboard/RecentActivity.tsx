@@ -19,9 +19,17 @@ export function RecentActivity() {
       </View>
 
       <View className="gap-4">
-        {recentActivity.map((receipt) => (
-          <ReceiptThumbnail key={receipt.id} receipt={receipt} />
-        ))}
+        {recentActivity.length > 0 ? (
+          recentActivity.map((receipt) => (
+            <ReceiptThumbnail key={receipt.id} receipt={receipt} />
+          ))
+        ) : (
+          <View className="py-4 items-center justify-center">
+            <AppText variant="muted" className="text-lg">
+              No recent activity to display
+            </AppText>
+          </View>
+        )}
       </View>
     </View>
   );
