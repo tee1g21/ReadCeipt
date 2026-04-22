@@ -33,7 +33,7 @@ export function generateFakerData(numReceipts = 200) {
     }
 
     const hasDiscount =
-      faker.helpers.maybe(() => true, { probability: 0.2 }) ?? false;
+      faker.helpers.maybe(() => true, { probability: 0.6 }) ?? false;
     const discounts = hasDiscount
       ? Number(
           faker.number
