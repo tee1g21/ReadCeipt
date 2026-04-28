@@ -24,7 +24,9 @@ app.post("/scan", async (c) => {
       );
     }
 
-    const rawText = await extractText(base64Image, c.env.CLOUD_VISION_KEY);
+    const pureBase64 = base64Image.replace(/^data:image\/[a-z]+;base64,/, "");
+
+    const rawText = await extractText(pureBase64, c.env.CLOUD_VISION_KEY);
 
     const receiptObject = await parseReceipt(rawText, c.env.GEMINI_API_KEY);
 
