@@ -13,10 +13,11 @@ async function testScanner() {
     const startTime = Date.now();
 
     // 3. Fire it at your local emulator
-    const response = await fetch("http://localhost:8787/scan", {
+    const response = await fetch("http://localhost:8787/api/scan", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "x-api-key": "EXPO_TEST_KEY_123",
       },
       body: JSON.stringify({ image: base64Image }),
     });

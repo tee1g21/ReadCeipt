@@ -6,13 +6,30 @@ import { parseReceipt } from "./parseReceipt";
 type Bindings = {
   GEMINI_API_KEY: string;
   CLOUD_VISION_KEY: string;
+  API_KEYS: KVNamespace;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
 
 app.use("/*", cors());
 
-app.post("/scan", async (c) => {
+app.use("/api/*", async (c, next) => {
+  const incomingKey = c.req.header("x-api-key");
+
+  if (!incomingKey) {
+    return c.json({ error: "Missing API Key" }, 401);
+  }
+
+  const clientName = await c.env.API_KEYS.get(incomingKey);
+
+  if (!clientName) {
+    return c.json({ error: "Unauthorized - Invalid Key" }, 401);
+  }
+
+  await next();
+});
+
+app.post("/api/scan", async (c) => {
   try {
     const body = await c.req.json();
     const base64Image = body.image;
