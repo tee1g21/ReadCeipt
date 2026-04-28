@@ -4,7 +4,7 @@ async function testScanner() {
   try {
     console.log("📸 Loading image...");
     // 1. Read the image file from your computer
-    const imageBuffer = fs.readFileSync("./receipt-example.jpg");
+    const imageBuffer = fs.readFileSync("./receipt-example-2.jpg");
 
     // 2. Convert it to a Base64 string
     const base64Image = imageBuffer.toString("base64");
