@@ -7,6 +7,7 @@ type Bindings = {
   GEMINI_API_KEY: string;
   CLOUD_VISION_KEY: string;
   API_KEYS: KVNamespace;
+  SCAN_LIMITER: RateLimit;
 };
 
 const app = new Hono<{ Bindings: Bindings }>();
@@ -24,6 +25,17 @@ app.use("/api/*", async (c, next) => {
 
   if (!clientName) {
     return c.json({ error: "Unauthorized - Invalid Key" }, 401);
+  }
+
+  const { success } = await c.env.SCAN_LIMITER.limit({ key: incomingKey });
+
+  if (!success) {
+    return c.json(
+      {
+        error: "Rate limit exceeded. Please wait a minute.",
+      },
+      429,
+    );
   }
 
   await next();
