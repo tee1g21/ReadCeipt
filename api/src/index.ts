@@ -43,18 +43,20 @@ app.use("/api/*", async (c, next) => {
 
 app.post("/api/scan", async (c) => {
   try {
+    const contentLength = c.req.header("content-length");
+    if (contentLength && parseInt(contentLength, 10) > 5 * 1024 * 1024) {
+      return c.json({ error: "Body too large" }, 413);
+    }
     const body = await c.req.json();
     const base64Image = body.image;
 
-    if (JSON.stringify(body).length > 5 * 1024 * 1024) {
-      return c.json({ error: "Body too large" }, 413);
-    }
-
     if (!base64Image) {
-      return c.json(
-        { success: false, error: "No image provided in payload" },
-        400,
-      );
+      return c.json({ error: "No image provided in payload" }, 400);
+    }
+    const isBase64 = /^[A-Za-z0-9+/]*={0,2}$/.test(base64Image.slice(0, 100));
+
+    if (!isBase64) {
+      return c.json({ error: "Invalid image format" }, 400);
     }
 
     const pureBase64 = base64Image.replace(/^data:image\/[a-z]+;base64,/, "");
