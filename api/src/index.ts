@@ -34,6 +34,10 @@ app.post("/api/scan", async (c) => {
     const body = await c.req.json();
     const base64Image = body.image;
 
+    if (JSON.stringify(body).length > 5 * 1024 * 1024) {
+      return c.json({ error: "Body too large" }, 413);
+    }
+
     if (!base64Image) {
       return c.json(
         { success: false, error: "No image provided in payload" },
