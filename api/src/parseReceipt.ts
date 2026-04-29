@@ -1,5 +1,5 @@
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
-import { generateObject } from "ai";
+import { generateText, Output } from "ai";
 import { receiptSchema } from "./receiptSchema";
 import { systemPrompt } from "./systemPrompt";
 
@@ -10,10 +10,11 @@ export async function parseReceipt(rawText: string, apiKey: string) {
     apiKey: apiKey,
   });
 
-  const { object } = await generateObject({
+  const { output: object } = await generateText({
     model: google("gemini-2.5-flash-lite"),
-    output: "object",
-    schema: receiptSchema,
+    output: Output.object({
+      schema: receiptSchema,
+    }),
     system: systemPrompt,
     messages: [
       {
@@ -21,10 +22,10 @@ export async function parseReceipt(rawText: string, apiKey: string) {
         content: [
           {
             type: "text",
-            text: `BEGINNING OF RAW TEXT 
-            
+            text: `BEGINNING OF RAW TEXT
+
             ${rawText}
-            
+
             END OF RAW TEXT`,
           },
         ],
