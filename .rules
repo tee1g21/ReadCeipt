@@ -1,0 +1,47 @@
+# ReadCeipt Project Instructions
+
+This file contains foundational mandates for the ReadCeipt project. All contributors (human and AI) must adhere to these standards.
+
+## AI Behaviour
+
+- **Conservative approach**: Only implement exactly what is explicitly requested. Do not add extra features, refactor unrelated code, or suggest improvements unless asked.
+- **Ask before large tasks**: Before undertaking substantial changes (e.g., major refactoring, adding new dependencies, significant architectural changes), stop and ask for explicit permission first.
+- **Minimal assumptions**: If requirements are ambiguous, ask clarifying questions rather than making assumptions about intent.
+- **Self-contained edits**: Make focused, narrow changes scoped to the specific task. Avoid "while I'm at it" modifications.
+- **Respect existing code style**: Follow the established conventions (no emojis, TypeScript strict, NativeWind only, self-documenting code) without deviation.
+- **Concise responses**: Be direct in explanations. Avoid verbose elaboration unless clarity requires it. Prefer showing code over describing it extensively.
+
+## Architecture
+
+OCR-powered mobile app to capture, parse, and organise receipt data. Two independent packages (no shared workspace root):
+
+- **api/** — Cloudflare Worker (Hono) that receives base64 images, extracts text via Google Cloud Vision, then parses structured receipt data via Gemini (`@ai-sdk/google`). Exposes `POST /api/scan` with API key auth and per-key rate limiting (10 req/min).
+- **client/** — Expo app (React Native + TypeScript) with expo-router file-based routing. Local SQLite via Drizzle ORM + `expo-sqlite`. State management via Zustand. Styled with NativeWind (Tailwind). Web build deploys to Cloudflare Pages as a marketing landing page with phone emulator wrapper.
+
+## Developer Commands
+
+Run `cd api && pnpm dev` for the API, `cd client && pnpm start` for the client. Use `pnpm format` in either directory to format code. Other common tasks: `pnpm lint` (client), `pnpm deploy` (API), `pnpm drizzle-kit generate` (client schema migrations), `pnpm cf-typegen` (API Cloudflare Worker types).
+
+No test framework is configured. API has a manual smoke test at `api/test/test.js`.
+
+## Environment & Configuration
+
+- **API secrets**: stored in `api/.dev.vars` (gitignored). Requires `GEMINI_API_KEY` and `CLOUD_VISION_KEY`. API bindings (`API_KEYS` KV namespace, `SCAN_LIMITER` rate limiting) defined in `api/wrangler.jsonc`.
+- **Client path alias**: `@/*` maps to client root (see `client/tsconfig.json`).
+- **pnpm quirk**: `client/pnpm-workspace.yaml` sets `nodeLinker: hoisted` — do not change this without understanding why.
+
+## Code Conventions
+
+- **No emojis** anywhere in code, comments, or docs.
+- **TypeScript strict** in both packages. Avoid `any` and type-casting.
+- **Self-documenting code** — minimal comments, only for non-obvious logic.
+- **Client styling**: NativeWind (Tailwind classes) only. No inline styles unless dynamic.
+- **Component architecture**: Functional components only. Place reusable UI primitives in `client/components/ui/` and business logic in custom hooks (`client/hooks/`).
+- **Cross-platform**: use `Platform.OS` or `.web.tsx`/`.native.tsx` extensions when native and web logic diverge.
+
+## Database
+
+- Two-table schema: `receipts` and `receipt_items` (cascade delete). After any schema change, run `pnpm drizzle-kit generate` in `/client`.
+- DB driver: `expo-sqlite` via Drizzle with `expo` driver mode.
+
+
