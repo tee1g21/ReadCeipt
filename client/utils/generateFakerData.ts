@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { CATEGORY_LIST } from "@/context/useCategories";
+import { CATEGORY_LIST } from "@/lib/categories";
 import { Receipt, ReceiptItem } from "@/db/schema";
 
 export function generateFakerData(numReceipts = 200) {

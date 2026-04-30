@@ -1,6 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { cssInterop } from "nativewind";
-import { getCategory, CategoryId } from "@/context/useCategories";
+import { getCategory, CategoryId } from "@/lib/categories";
 import { cn } from "@/lib/cn";
 
 cssInterop(Ionicons, {

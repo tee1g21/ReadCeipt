@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { Button } from "@/components/ui";
 import { type ReceiptCategoryId } from "@/app/(tabs)/history";
-import { CATEGORY_LIST } from "@/context/useCategories";
+import { CATEGORY_LIST } from "@/lib/categories";
 
 const receiptCategories = [
   { id: "all", label: "ALL RECEIPTS" },

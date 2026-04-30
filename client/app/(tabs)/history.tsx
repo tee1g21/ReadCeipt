@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { CategoryFilter, HistoryContent } from "@/components/history";
 import { useState } from "react";
 import { useReceiptHistory } from "@/hooks/useReceiptHistory";
-import { CATEGORY_LIST } from "@/context/useCategories";
+import { CATEGORY_LIST } from "@/lib/categories";
 
 export type ReceiptCategoryId = "all" | (typeof CATEGORY_LIST)[number]["id"];
 

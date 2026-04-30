@@ -2,7 +2,7 @@ import { Pressable, View } from "react-native";
 import { useRouter } from "expo-router";
 import { Surface } from "./Surface";
 import { AppText } from "./AppText";
-import { getCategory } from "@/context/useCategories";
+import { getCategory } from "@/lib/categories";
 import { CategoryIcon } from "./CategoryIcon";
 import type { Receipt } from "@/db/schema";
 import { formatReceiptThumbnailTimeStamp } from "@/lib/dateFormatter";

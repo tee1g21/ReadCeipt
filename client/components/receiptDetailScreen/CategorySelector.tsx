@@ -1,7 +1,7 @@
 import { PressableSurface, AppText, CategoryIcon } from "@/components/ui";
 import { Receipt } from "@/db/schema";
 import { View } from "react-native";
-import { getCategory } from "@/context/useCategories";
+import { getCategory } from "@/lib/categories";
 
 interface CategorySelectorProps {
   receipt: Receipt;

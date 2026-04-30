@@ -1,6 +1,6 @@
 import { Surface, Icon, AppText } from "@/components/ui";
 import { useDashboardStats } from "@/hooks/dashboard/useDashboardStats";
-import { getCategory } from "@/context/useCategories";
+import { getCategory } from "@/lib/categories";
 
 export function TopCategory() {
   const { topCategoryId } = useDashboardStats();
