@@ -1,7 +1,7 @@
 import { PressableSurface, AppText, Icon } from "@/components/ui";
 import { View } from "react-native";
 import { Receipt } from "@/db/schema";
-import { formatReceiptDetailTimeStamp } from "@/lib/dateFormatter";
+import { formatReceiptDetailTimeStamp } from "@/lib/formatDate";
 
 interface DateTimeMerchantAddressCardProps {
   receipt: Receipt;

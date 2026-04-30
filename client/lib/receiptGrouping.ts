@@ -1,5 +1,5 @@
 import { Receipt } from "@/db/schema";
-import { getSectionTitle } from "@/lib/dateFormatter";
+import { getSectionTitle } from "@/lib/formatDate";
 
 export interface ReceiptSection {
   title: string;
