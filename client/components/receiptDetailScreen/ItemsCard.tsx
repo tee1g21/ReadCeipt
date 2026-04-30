@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { cn } from "@/lib/cn";
 import { Receipt } from "@/db/schema";
 import { useReceiptDetailScreen } from "@/hooks/receiptDetailScreen/useReceiptDetailScreen";
-import { formatCurrency } from "@/lib/currencyFormatter";
+import { formatCurrency } from "@/lib/formatCurrency";
 
 interface ItemsCardProps {
   expanded?: boolean;

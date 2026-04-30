@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Container, AppText } from "@/components/ui";
 import { useDashboardStats } from "@/hooks/dashboard/useDashboardStats";
-import { formatCurrency } from "@/lib/currencyFormatter";
+import { formatCurrency } from "@/lib/formatCurrency";
 
 export function CurrentMonthSpending() {
   const { currentMonthSpend } = useDashboardStats();

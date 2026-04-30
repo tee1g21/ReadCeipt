@@ -1,7 +1,7 @@
 import { View } from "react-native";
 import { Surface, AppText } from "@/components/ui";
 import { Receipt } from "@/db/schema";
-import { formatCurrency } from "@/lib/currencyFormatter";
+import { formatCurrency } from "@/lib/formatCurrency";
 import { cn } from "@/lib/cn";
 
 interface TotalsCardProps {

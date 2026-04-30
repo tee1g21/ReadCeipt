@@ -6,7 +6,7 @@ import { getCategory } from "@/lib/categories";
 import { CategoryIcon } from "./CategoryIcon";
 import type { Receipt } from "@/db/schema";
 import { formatReceiptThumbnailTimeStamp } from "@/lib/dateFormatter";
-import { formatCurrency } from "@/lib/currencyFormatter";
+import { formatCurrency } from "@/lib/formatCurrency";
 
 interface ReceiptPreviewProps {
   receipt: Receipt;
