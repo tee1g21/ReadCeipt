@@ -60,6 +60,18 @@ const baseReceiptSchema = z.object({
     .number()
     .nullable()
     .describe("The final total paid. MUST be null if not explicitly printed."),
+  currency: z
+    .string()
+    .nullable()
+    .describe(
+      "ISO 4217 currency code (e.g. GBP, USD, EUR). Null if not identifiable.",
+    ),
+  paymentMethod: z
+    .string()
+    .nullable()
+    .describe(
+      "Payment method used. Infer from receipt text (e.g. 'VISA DEBIT', 'AMEX', 'Cash', 'Bank Transfer'). Null if not identifiable.",
+    ),
   items: z
     .array(
       z.object({
