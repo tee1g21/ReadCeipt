@@ -12,6 +12,7 @@ This file contains foundational mandates for the ReadCeipt project. All contribu
 - **Schema migrations**: Never manually create migration SQL files. If `pnpm drizzle-kit generate` fails, ask the user to run it manually and report the result. Do not attempt workarounds.
 - **Respect existing code style**: Follow the established conventions (no emojis, TypeScript strict, NativeWind only, self-documenting code) without deviation.
 - **Concise responses**: Be direct in explanations. Avoid verbose elaboration unless clarity requires it. Prefer showing code over describing it extensively.
+- **Use Context7 for documentation**: Before implementing features that rely on external libraries or APIs (e.g., `expo-file-system`, `drizzle-orm`, etc.), use the Context7 MCP tool via `resolve-library-id` and `query-docs` to fetch exact, up-to-date documentation. This prevents @ts-ignore workarounds and use of deprecated functions. Never make assumptions about API signatures.
 
 ## Architecture
 
