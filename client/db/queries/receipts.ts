@@ -1,6 +1,6 @@
 import { eq, desc, like, and, or, sql, gte } from "drizzle-orm";
 import { db } from "../client";
-import { receipts, Receipt } from "../schema";
+import { receipts, receiptItems, Receipt } from "../schema";
 
 export function getReceiptsFromDateQuery(dateTimestamp: number) {
   return db
@@ -67,4 +67,37 @@ export async function markReceiptAsViewed(receiptId: string) {
   } catch (error) {
     console.error("Failed to mark receipt as viewed:", error);
   }
+}
+
+export interface ReceiptInsertData {
+  id: string;
+  merchant: string | null;
+  address: string | null;
+  dateTimestamp: number | null;
+  categoryId: string;
+  subtotal: number;
+  discounts: number;
+  totalAmount: number;
+  imageUri: string;
+}
+
+export interface ReceiptItemInsertData {
+  id: string;
+  receiptId: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+}
+
+export async function insertReceipt(
+  receipt: ReceiptInsertData,
+  items: ReceiptItemInsertData[],
+): Promise<void> {
+  await db.transaction(async (tx) => {
+    await tx.insert(receipts).values(receipt);
+    if (items.length > 0) {
+      await tx.insert(receiptItems).values(items);
+    }
+  });
 }

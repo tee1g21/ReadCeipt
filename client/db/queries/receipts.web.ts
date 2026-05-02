@@ -53,3 +53,31 @@ export async function markReceiptAsViewed(receiptId: string): Promise<void> {
     receipt.viewedAtTimestamp = Date.now();
   }
 }
+
+export interface ReceiptInsertData {
+  id: string;
+  merchant: string | null;
+  address: string | null;
+  dateTimestamp: number | null;
+  categoryId: string;
+  subtotal: number;
+  discounts: number;
+  totalAmount: number;
+  imageUri: string;
+}
+
+export interface ReceiptItemInsertData {
+  id: string;
+  receiptId: string;
+  name: string;
+  quantity: number;
+  unitPrice: number;
+  totalPrice: number;
+}
+
+export async function insertReceipt(
+  _receipt: ReceiptInsertData,
+  _items: ReceiptItemInsertData[],
+): Promise<void> {
+  // Web demo uses mock data only, scanning is not available
+}
