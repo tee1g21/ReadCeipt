@@ -2,6 +2,23 @@ import { isToday, isYesterday, isThisWeek, format } from "date-fns";
 
 const dateUnknownText = "Date unknown";
 
+export function parseDateTimeToTimestamp(
+  date: string | null,
+  time: string | null,
+): number | null {
+  if (!date) return null;
+
+  try {
+    const timeStr = time || "00:00";
+    const dateObj = new Date(`${date}T${timeStr}:00`);
+    const timestamp = dateObj.getTime();
+
+    return isNaN(timestamp) ? null : timestamp;
+  } catch {
+    return null;
+  }
+}
+
 export function getSectionTitle(timestamp: number | null): string {
   if (!timestamp) return dateUnknownText;
 
