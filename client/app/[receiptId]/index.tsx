@@ -40,7 +40,7 @@ export default function ReceiptDetailScreen() {
         <View className="gap-4 px-4 flex-1 w-full">
           <View className="flex-row gap-4">
             <View className="w-3/12">
-              <ImagePreview />
+              <ImagePreview receipt={receipt} />
             </View>
 
             <View className="gap-4 flex-1">

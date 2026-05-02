@@ -2,9 +2,18 @@ import { Surface, AppPressable, Icon } from "@/components/ui";
 import { Image } from "expo-image";
 import { Modal, Pressable } from "react-native";
 import { useState } from "react";
+import { Receipt } from "@/db/schema";
 
-export function ImagePreview() {
+interface ImagePreviewProps {
+  receipt: Receipt;
+}
+
+export function ImagePreview({ receipt }: ImagePreviewProps) {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+
+  const imageSource = receipt.imageUri
+    ? { uri: receipt.imageUri }
+    : require("@/assets/images/receipt-example.jpg");
 
   return (
     <>
@@ -13,7 +22,7 @@ export function ImagePreview() {
         onPress={() => setIsImageModalOpen(true)}
       >
         <Image
-          source={require("@/assets/images/receipt-example.jpg")}
+          source={imageSource}
           style={{ width: "100%", height: "100%" }}
           contentFit="cover"
           transition={200}
@@ -39,7 +48,7 @@ export function ImagePreview() {
           onPress={() => setIsImageModalOpen(false)}
         >
           <Image
-            source={require("@/assets/images/receipt-example.jpg")}
+            source={imageSource}
             style={{ width: "100%", height: "85%" }}
             contentFit="contain"
             transition={200}
