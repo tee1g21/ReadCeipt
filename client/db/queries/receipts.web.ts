@@ -3,7 +3,7 @@ import { Receipt } from "../schema";
 
 export function getReceiptsFromDate(dateTimestamp: number) {
   return mockDb.receipts
-    .filter((r) => r.dateTimestamp >= dateTimestamp)
+    .filter((r) => (r.dateTimestamp ?? 0) >= dateTimestamp)
     .map((r) => ({
       totalAmount: r.totalAmount,
       dateTimestamp: r.dateTimestamp,
@@ -32,7 +32,7 @@ export function getFilteredReceipts({
   if (searchQuery && searchQuery.trim() !== "") {
     const query = searchQuery.toLowerCase();
     filtered = filtered.filter((r) => {
-      const inMerchant = r.merchant.toLowerCase().includes(query);
+      const inMerchant = r.merchant?.toLowerCase().includes(query) ?? false;
       const inAddress = r.address?.toLowerCase().includes(query) ?? false;
       const inCategory = r.categoryId.toLowerCase().includes(query);
       const inAmount = r.totalAmount.toString().includes(query);
@@ -41,7 +41,7 @@ export function getFilteredReceipts({
     });
   }
 
-  filtered.sort((a, b) => b.dateTimestamp - a.dateTimestamp);
+  filtered.sort((a, b) => (b.dateTimestamp ?? 0) - (a.dateTimestamp ?? 0));
 
   const end = limit !== undefined ? offset + limit : undefined;
   return filtered.slice(offset, end);

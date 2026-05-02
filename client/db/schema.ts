@@ -5,10 +5,10 @@ import { sql } from "drizzle-orm";
 export const receipts = sqliteTable("receipts", {
   id: text("id").primaryKey(),
 
-  merchant: text("merchant").notNull(),
+  merchant: text("merchant"),
   address: text("address"),
 
-  dateTimestamp: integer("date_timestamp").notNull(),
+  dateTimestamp: integer("date_timestamp"),
   categoryId: text("category_id").notNull().default("other"),
 
   subtotal: real("subtotal").notNull(),

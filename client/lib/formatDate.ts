@@ -1,6 +1,10 @@
 import { isToday, isYesterday, isThisWeek, format } from "date-fns";
 
-export function getSectionTitle(timestamp: number): string {
+const dateUnknownText = "Date unknown";
+
+export function getSectionTitle(timestamp: number | null): string {
+  if (!timestamp) return dateUnknownText;
+
   const date = new Date(timestamp);
 
   if (isToday(date)) return "Today";
@@ -10,7 +14,11 @@ export function getSectionTitle(timestamp: number): string {
   return format(date, "MMMM yyyy");
 }
 
-export function formatReceiptThumbnailTimeStamp(timestamp: number): string {
+export function formatReceiptThumbnailTimeStamp(
+  timestamp: number | null,
+): string {
+  if (!timestamp) return dateUnknownText;
+
   const date = new Date(timestamp);
   const timeString = format(date, "HH:mm a");
 
@@ -21,7 +29,9 @@ export function formatReceiptThumbnailTimeStamp(timestamp: number): string {
   return `${dayString} • ${timeString}`;
 }
 
-export function formatReceiptDetailTimeStamp(timestamp: number): string {
+export function formatReceiptDetailTimeStamp(timestamp: number | null): string {
+  if (!timestamp) return dateUnknownText;
+
   const date = new Date(timestamp);
   const timeString = format(date, "HH:mm a");
 

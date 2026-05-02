@@ -8,6 +8,7 @@ export interface ReceiptSection {
 
 export function groupReceiptsByDate(receipts: Receipt[]): ReceiptSection[] {
   const receiptSection: Record<string, Receipt[]> = {};
+  const dateUnknownText = "Date unknown";
 
   receipts.forEach((receipt) => {
     const sectionTitle = getSectionTitle(receipt.dateTimestamp);
@@ -31,8 +32,18 @@ export function groupReceiptsByDate(receipts: Receipt[]): ReceiptSection[] {
 
   // Push the remaining months/years
   Object.keys(receiptSection).forEach((title) => {
-    finalSections.push({ title, data: receiptSection[title] });
+    if (title !== dateUnknownText) {
+      finalSections.push({ title, data: receiptSection[title] });
+    }
   });
+
+  // Push dateUnknownText section last if it exists
+  if (receiptSection[dateUnknownText]) {
+    finalSections.push({
+      title: dateUnknownText,
+      data: receiptSection[dateUnknownText],
+    });
+  }
 
   return finalSections;
 }

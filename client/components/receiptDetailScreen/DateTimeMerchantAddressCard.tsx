@@ -23,7 +23,7 @@ export function DateTimeMerchantAddressCard({
           numberOfLines={2}
           ellipsizeMode="tail"
         >
-          {receipt.merchant}
+          {receipt.merchant || "Merchant Unknown"}
         </AppText>
         <View className="flex-row items-start gap-2 min-w-0">
           <Icon
