@@ -19,6 +19,12 @@
       },
     },
   ],
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+    },
+  },
   // "compatibility_flags": [
   //   "nodejs_compat"
   // ],
