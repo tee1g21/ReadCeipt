@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "api",
+  "name": "readceipt",
   "main": "src/index.ts",
   "compatibility_date": "2026-04-27",
   "kv_namespaces": [
