@@ -12,6 +12,12 @@ import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import * as SystemUI from "expo-system-ui";
 import { useInitializeDatabase } from "@/hooks/useInitialiseDatabase";
+import { configureReanimatedLogger, ReanimatedLogLevel } from 'react-native-reanimated';
+
+configureReanimatedLogger({
+  level: ReanimatedLogLevel.warn,
+  strict: false, 
+});
 
 SplashScreen.preventAutoHideAsync();
 
