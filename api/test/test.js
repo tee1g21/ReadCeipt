@@ -1,4 +1,7 @@
+import dotenv from "dotenv";
 import fs from "fs";
+
+dotenv.config({ path: "./test/.test.env" });
 
 async function testScanner() {
   try {
@@ -8,14 +11,14 @@ async function testScanner() {
 
     const base64Image = imageBuffer.toString("base64");
 
-    console.log("🚀 Sending to local Cloudflare Worker...");
+    console.log("🚀 Sending to API...");
     const startTime = Date.now();
 
-    const response = await fetch("http://localhost:8787/api/scan", {
+    const response = await fetch(process.env.API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": "EXPO_TEST_KEY_123",
+        "x-api-key": process.env.API_KEY,
       },
       body: JSON.stringify({ image: base64Image }),
     });
