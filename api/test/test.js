@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
 import fs from "fs";
 
-dotenv.config({ path: "./test/.test.env" });
+dotenv.config({ path: "./.test.env" });
 
 async function testScanner() {
   try {
     console.log("📸 Loading image...");
 
-    const imageBuffer = fs.readFileSync("./receipt-example-2.jpg");
+    const imageBuffer = fs.readFileSync("./non-receipt-example.jpg");
 
     const base64Image = imageBuffer.toString("base64");
 

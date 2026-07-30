@@ -65,6 +65,23 @@ app.post("/api/scan", async (c) => {
 
     const receiptObject = await parseReceipt(rawText, c.env.GEMINI_API_KEY);
 
+    // Validate that this is actually a receipt
+    const isValidReceipt =
+      receiptObject.merchant !== null &&
+      receiptObject.items.length > 0 &&
+      receiptObject.totalAmount !== null;
+
+    if (!isValidReceipt) {
+      return c.json(
+        {
+          success: false,
+          error:
+            "Image does not appear to be a receipt. Please try again with a receipt image.",
+        },
+        400,
+      );
+    }
+
     return c.json({ success: true, data: receiptObject });
   } catch (error) {
     console.error("AI Extraction Error:", error);
