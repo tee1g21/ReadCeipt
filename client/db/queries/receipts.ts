@@ -57,6 +57,15 @@ export function getFilteredReceipts({
   return filteredReceipts.all();
 }
 
+export async function deleteReceipt(receiptId: string) {
+  try {
+    await db.delete(receipts).where(eq(receipts.id, receiptId));
+    console.log("Receipt deleted:", receiptId);
+  } catch (error) {
+    console.error("Failed to delete receipt:", error);
+  }
+}
+
 export async function markReceiptAsViewed(receiptId: string) {
   try {
     await db

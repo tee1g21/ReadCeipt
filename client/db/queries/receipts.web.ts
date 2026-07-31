@@ -47,6 +47,13 @@ export function getFilteredReceipts({
   return filtered.slice(offset, end);
 }
 
+export async function deleteReceipt(receiptId: string): Promise<void> {
+  const index = mockDb.receipts.findIndex((r) => r.id === receiptId);
+  if (index !== -1) {
+    mockDb.receipts.splice(index, 1);
+  }
+}
+
 export async function markReceiptAsViewed(receiptId: string): Promise<void> {
   const receipt = mockDb.receipts.find((r) => r.id === receiptId);
   if (receipt) {
