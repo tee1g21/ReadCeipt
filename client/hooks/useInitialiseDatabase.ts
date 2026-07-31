@@ -13,14 +13,14 @@ export function useInitializeDatabase() {
     async function setupDatabase() {
       if (dbLoaded) {
         try {
-          if (__DEV__) {
-            await seedDatabase();
-            const result = await db.select().from(receipts).limit(1);
-            console.log(
-              "First receipt in database:",
-              JSON.stringify(result[0], null, 2),
-            );
-          }
+          // if (__DEV__) {
+          //   await seedDatabase();
+          //   const result = await db.select().from(receipts).limit(1);
+          //   console.log(
+          //     "First receipt in database:",
+          //     JSON.stringify(result[0], null, 2),
+          //   );
+          // }
           setDbReady(true);
         } catch (error) {
           console.error("Database setup failed:", error);
