@@ -7,6 +7,7 @@ import { CategoryIcon } from "./CategoryIcon";
 import type { Receipt } from "@/db/schema";
 import { formatReceiptThumbnailTimeStamp } from "@/lib/formatDate";
 import { formatCurrency } from "@/lib/formatCurrency";
+import { Image } from "expo-image";
 
 interface ReceiptPreviewProps {
   receipt: Receipt;
@@ -25,13 +26,23 @@ export function ReceiptThumbnail({ receipt }: ReceiptPreviewProps) {
       <View className="flex-1 flex-row gap-3">
         <Surface
           variant="secondary"
-          className="flex-none p-0 w-14 h-14 items-center justify-center"
+          className="flex-none overflow-hidden p-0 w-14 h-14 items-center justify-center"
         >
-          <CategoryIcon
-            categoryId={category.id}
-            size="lg"
-            className="text-primary"
-          />
+          {receipt.imageUri ? (
+            <Image
+              source={receipt.imageUri}
+              style={{ width: "100%", height: "100%" }}
+              contentFit="cover"
+              // transition={200}
+              accessibilityLabel="Receipt image"
+            />
+          ) : (
+            <CategoryIcon
+              categoryId={category.id}
+              size="lg"
+              className="text-primary"
+            />
+          )}
         </Surface>
         <View className="flex-1 mr-2">
           <AppText
