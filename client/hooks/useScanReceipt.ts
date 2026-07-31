@@ -1,5 +1,6 @@
 import { useState } from "react";
-import * as FileSystem from "expo-file-system";
+import * as Crypto from "expo-crypto";
+import { File, Directory, Paths } from "expo-file-system";
 import {
   insertReceipt,
   ReceiptInsertData,
@@ -31,39 +32,55 @@ export function useScanReceipt() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const scanReceipt = async (
-    receiptId: string,
-    capturedImage: { uri: string; base64?: string },
-  ): Promise<{ receiptId: string } | null> => {
+  const scanReceipt = async (capturedImage: {
+    uri: string;
+    base64?: string;
+  }): Promise<{ receiptId: string } | null> => {
     setIsLoading(true);
     setError(null);
 
+    const receiptId = Crypto.randomUUID();
     let permanentImageUri: string | null = null;
 
     try {
+      console.log("[Scan] Starting receipt scan...");
+
       // Ensure base64 is available
       if (!capturedImage.base64) {
         throw new Error("Image base64 data is missing");
       }
+      console.log(
+        "[Scan] Base64 available, size:",
+        capturedImage.base64.length,
+      );
 
       // Step 1: Move image to permanent storage
-      const docsDir = (FileSystem as unknown as { documentDirectory: string })
-        .documentDirectory;
-      const receiptDir = `${docsDir}receipts/`;
-      await FileSystem.makeDirectoryAsync(receiptDir, { intermediates: true });
-      permanentImageUri = `${receiptDir}${receiptId}.jpg`;
-      await FileSystem.moveAsync({
-        from: capturedImage.uri,
-        to: permanentImageUri,
-      });
+      console.log("[Scan] Creating receipts directory...");
+      const receiptsDir = new Directory(Paths.document, "receipts");
+      if (!receiptsDir.exists) {
+        receiptsDir.create();
+      }
+      console.log("[Scan] Directory ready:", receiptsDir.uri);
+
+      console.log("[Scan] Moving image to permanent storage...");
+      const sourceFile = new File(capturedImage.uri);
+      const destFile = new File(receiptsDir, `${receiptId}.jpg`);
+      await sourceFile.move(destFile);
+      permanentImageUri = destFile.uri;
+      console.log("[Scan] Image moved to:", permanentImageUri);
 
       // Step 2: Call API
+      console.log("[Scan] Calling API...");
       const apiUrl = process.env.EXPO_PUBLIC_API_URL;
       const apiKey = process.env.EXPO_PUBLIC_API_KEY;
 
       if (!apiUrl || !apiKey) {
         throw new Error("API configuration missing");
       }
+      console.log("[Scan] API URL:", apiUrl);
+
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 30 second timeout
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -72,10 +89,14 @@ export function useScanReceipt() {
           "x-api-key": apiKey,
         },
         body: JSON.stringify({
-          image: `data:image/jpeg;base64,${capturedImage.base64}`,
+          image: capturedImage.base64,
         }),
+        signal: controller.signal,
       });
 
+      clearTimeout(timeoutId);
+
+      console.log("[Scan] API Response status:", response.status);
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         const apiError = errorData.error || `API error: ${response.status}`;
@@ -83,10 +104,12 @@ export function useScanReceipt() {
         if (__DEV__) {
           console.error("API Error:", apiError);
         }
-        throw new Error("Failed to process receipt");
+        throw new Error(apiError);
       }
 
+      console.log("[Scan] Parsing API response...");
       const apiResponse: ScanReceiptResponse = await response.json();
+      console.log("[Scan] API response success:", apiResponse.success);
 
       if (!apiResponse.success || !apiResponse.data) {
         if (__DEV__) {
@@ -115,7 +138,7 @@ export function useScanReceipt() {
       };
 
       const items: ReceiptItemInsertData[] = receiptData.items.map((item) => ({
-        id: crypto.randomUUID(),
+        id: Crypto.randomUUID(),
         receiptId,
         name: item.name,
         quantity: item.quantity,
@@ -124,17 +147,19 @@ export function useScanReceipt() {
       }));
 
       // Step 4: Insert into database
+      console.log("[Scan] Inserting into database...");
       await insertReceipt(receipt, items);
+      console.log("[Scan] Database insert complete!");
 
       setIsLoading(false);
+      console.log("[Scan] Success! Receipt ID:", receiptId);
       return { receiptId };
     } catch (err) {
       // Clean up image file on error
       if (permanentImageUri) {
         try {
-          await FileSystem.deleteAsync(permanentImageUri, {
-            idempotent: true,
-          });
+          const file = new File(permanentImageUri);
+          file.delete();
         } catch {
           // Ignore cleanup errors
         }
@@ -145,9 +170,9 @@ export function useScanReceipt() {
       setError(errorMessage);
       setIsLoading(false);
 
-      if (__DEV__) {
-        console.error("Scan receipt error:", err);
-      }
+      // if (__DEV__) {
+      //   console.error("Scan receipt error:", err);
+      // }
 
       return null;
     }
