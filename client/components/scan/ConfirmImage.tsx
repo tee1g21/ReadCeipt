@@ -1,4 +1,4 @@
-import { View, Image } from "react-native";
+import { View, Image, Alert } from "react-native";
 import {
   Button,
   SafeContainer,
@@ -6,6 +6,7 @@ import {
   NavBottomGradient,
 } from "@/components/ui";
 import { router } from "expo-router";
+import { useScanReceipt } from "@/hooks/useScanReceipt";
 
 interface ConfirmImageProps {
   capturedImage: { uri: string; base64?: string };
@@ -18,12 +19,26 @@ export function ConfirmImage({
   capturedImage,
   setCapturedImage,
 }: ConfirmImageProps) {
-  const processReceipt = () => {
-    console.log("Approved Image URI:", capturedImage?.uri);
-    router.push({
-      pathname: "/[receiptId]",
-      params: { receiptId: "scanned" },
-    });
+  const { scanReceipt, isLoading, error } = useScanReceipt();
+
+  const processReceipt = async () => {
+    const result = await scanReceipt(capturedImage);
+
+    if (result) {
+      // Success - navigate to receipt detail
+      router.push({
+        pathname: "/[receiptId]",
+        params: { receiptId: result.receiptId, from: "scan" },
+      });
+    } else {
+      // Error - show alert and reset to camera
+      Alert.alert("Failed to Process Receipt", error || "Please try again.", [
+        {
+          text: "OK",
+          onPress: () => setCapturedImage(null), // Back to camera
+        },
+      ]);
+    }
   };
 
   return (
@@ -47,13 +62,15 @@ export function ConfirmImage({
             variant="secondary"
             label="Retake"
             onPress={() => setCapturedImage(null)}
+            disabled={isLoading}
           />
 
           <Button
             variant="primary"
-            label="Confirm"
-            icon={<Icon name="check" />}
+            label={isLoading ? "Loading" : "Confirm"}
+            icon={isLoading ? <Icon name="loader" /> : <Icon name="check" />}
             onPress={processReceipt}
+            disabled={isLoading}
           />
         </View>
       </SafeContainer>
