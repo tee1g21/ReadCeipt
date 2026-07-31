@@ -45,7 +45,7 @@ export function ItemsCard({ expanded, receipt }: ItemsCardProps) {
             className="justify-center p-0 flex-none px-3 h-12 items-center"
           >
             <AppText variant="body" className="font-sans-bold">
-              {items.length}
+              {items.reduce((sum, item) => sum + item.quantity, 0)}
             </AppText>
           </Surface>
         </View>
