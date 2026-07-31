@@ -2,6 +2,7 @@ import { Screen, Header, SearchBar } from "@/components/ui";
 import { View } from "react-native";
 import { CategoryFilter, HistoryContent } from "@/components/history";
 import { useState } from "react";
+import { useFocusEffect } from "expo-router";
 import { useReceiptHistory } from "@/hooks/useReceiptHistory";
 import { CATEGORY_LIST } from "@/lib/categories";
 
@@ -12,9 +13,13 @@ export default function History() {
   const [selectedCategory, setSelectedCategory] =
     useState<ReceiptCategoryId>("all");
 
-  const { groupedReceipts } = useReceiptHistory({
+  const { groupedReceipts, refreshHistory } = useReceiptHistory({
     searchQuery,
     categoryId: selectedCategory === "all" ? undefined : selectedCategory,
+  });
+
+  useFocusEffect(() => {
+    refreshHistory();
   });
 
   return (
