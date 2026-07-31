@@ -37,7 +37,7 @@ export function DateTimeMerchantAddressCard({
             numberOfLines={2}
             ellipsizeMode="tail"
           >
-            {receipt.address}
+            {receipt.address?.trim().replace(/\s+/g, " ") || "Address Unknown"}
           </AppText>
         </View>
       </View>
